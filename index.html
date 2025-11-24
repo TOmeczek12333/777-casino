@@ -13,7 +13,6 @@
             --green: #22c55e;
             --red: #ef4444;
             --text: #f8fafc;
-            --roulette-bg: #333;
         }
 
         body {
@@ -28,112 +27,149 @@
         /* --- BANER --- */
         .banner-container {
             width: 100%;
-            /* Usunąłem sztywną wysokość, żeby baner się skalował */
+            height: 250px; 
             border-bottom: 4px solid var(--gold);
             background-color: #000;
-            line-height: 0; /* Usuwa dziwne odstępy pod obrazkiem */
+            overflow: hidden;
+            position: relative;
+            line-height: 0;
         }
         .banner-img {
             width: 100%;
-            height: auto;
-            max-height: 300px; /* Ograniczenie wysokości na dużych ekranach */
-            object-fit: cover; /* Ładnie przycina jeśli proporcje są inne */
+            height: 100%;
+            object-fit: cover; 
             display: block;
         }
 
-        /* --- MUZYKA - PRZYCISK --- */
-        .music-control {
+        /* --- MUZYKA - NOWY STYL KONTROLEK W PRAWYM DOLNYM ROGU --- */
+        .settings-control {
             position: fixed;
-            top: 20px;
+            bottom: 20px;
             right: 20px;
-            z-index: 100;
+            z-index: 1000;
         }
-        .music-btn {
-            background: rgba(0, 0, 0, 0.7);
+        
+        .settings-icon {
+            background: rgba(30, 41, 59, 0.95); /* Ciemny kolor tła */
             color: var(--gold);
             border: 2px solid var(--gold);
-            border-radius: 50px;
-            padding: 10px 20px;
-            font-size: 0.9rem;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 24px;
             cursor: pointer;
-            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s;
+            box-shadow: 0 0 15px rgba(251, 191, 36, 0.5);
+            margin-left: auto; /* Ustawia ikonę po prawej stronie */
         }
-        .music-btn:hover {
-            background: var(--gold);
-            color: #000;
+        
+        .settings-icon:hover {
+            transform: rotate(90deg);
         }
 
-        /* --- NAGŁÓWEK --- */
+        .settings-options {
+            position: absolute;
+            bottom: 60px; /* Nad ikoną */
+            right: 0;
+            background-color: var(--card-bg);
+            border: 1px solid var(--gold);
+            border-radius: 8px;
+            padding: 10px;
+            width: 150px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: opacity 0.3s, transform 0.3s, visibility 0.3s;
+        }
+
+        .settings-options.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .setting-item {
+            padding: 8px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            color: var(--text);
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+        .setting-item:hover { color: var(--gold); }
+        .setting-item i { margin-right: 5px; }
+
+
+        /* --- NAGŁÓWEK i LAYOUT (Bez zmian) --- */
         header {
-            background: linear-gradient(90deg, #000, #333);
+            background: linear-gradient(90deg, #000, #1a1a1a);
             padding: 20px;
             border-bottom: 2px solid var(--gold);
             display: flex;
-            flex-direction: row;
             align-items: center;
             justify-content: center;
             gap: 20px;
-            flex-wrap: wrap;
             position: relative;
+            margin-top: -4px;
         }
 
         .avatar-img {
-            width: 80px;
-            height: 80px;
+            width: 90px;
+            height: 90px;
             border-radius: 50%;
             border: 3px solid var(--gold);
             box-shadow: 0 0 15px rgba(251, 191, 36, 0.5);
             background-color: #000;
+            object-fit: cover;
         }
 
         .header-text { text-align: left; }
-        
-        @media(max-width: 500px) {
-            .header-text { text-align: center; }
-            header { flex-direction: column; }
-            .music-control { top: 10px; right: 10px; } /* Mniejszy margines na telefonie */
-            .music-btn { padding: 5px 10px; font-size: 0.8rem; }
-        }
-
-        h1 { margin: 0; color: var(--gold); font-size: 2.2rem; text-transform: uppercase; letter-spacing: 2px; line-height: 1.1; }
+        h1 { margin: 0; color: var(--gold); font-size: 2.2rem; text-transform: uppercase; letter-spacing: 2px; }
         .subtitle { color: #aaa; font-size: 0.9rem; margin-top: 5px; }
 
         .container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 20px auto;
             padding: 20px;
         }
 
-        /* --- PORTFEL I KARTY --- */
         .wallet-box {
-            background-color: var(--card-bg);
+            background: linear-gradient(180deg, #1e293b, #0f172a);
             padding: 20px;
             border-radius: 15px;
             margin-bottom: 30px;
             border: 1px solid var(--gold);
-            box-shadow: 0 0 15px rgba(251, 191, 36, 0.2);
+            box-shadow: 0 0 20px rgba(251, 191, 36, 0.15);
         }
-        .balance-display { font-size: 1.8rem; font-weight: bold; color: var(--green); }
+        .balance-display { font-size: 2rem; font-weight: bold; color: var(--green); margin: 10px 0; text-shadow: 0 0 10px rgba(34, 197, 94, 0.3); }
 
         .game-section {
             display: grid;
             grid-template-columns: 1fr;
             gap: 20px;
         }
-        
-        @media(min-width: 600px) {
+        @media(min-width: 768px) {
             .game-section { grid-template-columns: 1fr 1fr; }
         }
 
         .game-card {
             background-color: var(--card-bg);
             padding: 20px;
-            border-radius: 10px;
+            border-radius: 12px;
             border: 1px solid #334155;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        h2 { color: var(--gold); margin-top: 0; }
-        
+        h2 { color: var(--gold); margin-top: 0; letter-spacing: 1px; border-bottom: 1px solid #333; width: 100%; padding-bottom: 10px; margin-bottom: 15px;}
+
         button {
             background-color: var(--gold);
             color: #000;
@@ -142,101 +178,174 @@
             font-size: 1rem;
             font-weight: bold;
             cursor: pointer;
-            border-radius: 5px;
+            border-radius: 6px;
             margin: 5px;
-            transition: transform 0.1s;
+            transition: all 0.2s;
+            box-shadow: 0 4px 0 #b45309;
         }
-
-        button:hover:not(:disabled) { transform: scale(1.05); background-color: #f59e0b; }
-        button:disabled { background-color: #555; cursor: not-allowed; }
+        button:active { transform: translateY(4px); box-shadow: none; }
+        button:hover:not(:disabled) { background-color: #fbbf24; filter: brightness(1.1); }
+        button:disabled { background-color: #555; color: #888; box-shadow: none; cursor: not-allowed; transform: none; }
 
         .input-bet {
-            padding: 10px;
-            border-radius: 5px;
-            border: none;
-            width: 80px;
+            padding: 12px;
+            border-radius: 8px;
+            border: 2px solid #334155;
+            background: #0f172a;
+            color: white;
+            width: 100px;
             text-align: center;
-            margin-bottom: 10px;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
         }
 
-        .status-msg { margin-top: 10px; font-weight: bold; min-height: 24px; }
-        .win { color: var(--green); }
+        .status-msg { margin-top: 15px; font-weight: bold; min-height: 24px; font-size: 1.1rem; }
+        .win { color: var(--green); text-shadow: 0 0 10px rgba(34, 197, 94, 0.5); }
         .lose { color: var(--red); }
 
-        /* --- BLACKJACK --- */
-        #bj-board { font-size: 1.2rem; margin: 15px 0; letter-spacing: 2px; background: #111; padding: 10px; border-radius: 5px; }
-        
-        /* --- RULETKA ANIMACJA --- */
-        .roulette-display {
+        /* --- CSS RULETKA --- */
+        .roulette-container {
             position: relative;
-            width: 150px;
-            height: 150px;
-            margin: 15px auto;
-            border-radius: 50%;
-            background-color: var(--roulette-bg);
-            border: 3px solid var(--gold);
-            overflow: hidden;
+            width: 200px;
+            height: 200px;
+            margin: 20px auto;
         }
-        .roulette-wheel {
+        
+        .wheel-css {
             width: 100%;
             height: 100%;
-            background-image: url('roulette_wheel.png');
-            background-size: cover;
-            background-position: center;
             border-radius: 50%;
+            border: 8px solid #d97706;
+            position: relative;
+            overflow: hidden;
+            background: conic-gradient(
+                #ef4444 0deg 24deg, 
+                #000 24deg 48deg,
+                #ef4444 48deg 72deg,
+                #000 72deg 96deg,
+                #ef4444 96deg 120deg,
+                #000 120deg 144deg,
+                #ef4444 144deg 168deg,
+                #000 168deg 192deg,
+                #ef4444 192deg 216deg,
+                #000 216deg 240deg,
+                #ef4444 240deg 264deg,
+                #000 264deg 288deg,
+                #ef4444 288deg 312deg,
+                #000 312deg 336deg,
+                #22c55e 336deg 360deg
+            );
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            transition: transform 3s cubic-bezier(0.1, 0.7, 0.1, 1);
         }
-        .roulette-result-overlay {
+
+        .wheel-center {
             position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px; height: 40px;
+            background: var(--gold);
+            border-radius: 50%;
+            z-index: 2;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .indicator {
+            position: absolute;
+            top: -10px; left: 50%;
+            transform: translateX(-50%);
+            width: 0; height: 0;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-top: 25px solid white;
+            z-index: 5;
+            filter: drop-shadow(0 2px 2px rgba(0,0,0,0.5));
+        }
+
+        /* --- VISUAL BLACKJACK CARDS --- */
+        .cards-area {
             display: flex;
             justify-content: center;
-            align-items: center;
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: white;
-            text-shadow: 2px 2px 4px black;
-            opacity: 0;
-            transition: opacity 0.5s ease-in-out;
-            background: rgba(0,0,0,0.5); /* Lekkie przyciemnienie przy wyniku */
+            gap: 10px;
+            min-height: 100px;
+            margin: 10px 0;
+            flex-wrap: wrap;
         }
-        .roulette-result-overlay.show { opacity: 1; }
-        .roulette-indicator {
-            position: absolute;
-            top: -5px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 0;
-            height: 0;
-            border-left: 10px solid transparent;
-            border-right: 10px solid transparent;
-            border-top: 20px solid var(--gold);
-            z-index: 10;
-        }
-        .roulette-button.red { background-color: var(--red); }
-        .roulette-button.black { background-color: #000; border: 1px solid white; }
-        .roulette-button.green { background-color: var(--green); }
 
+        .playing-card {
+            width: 60px;
+            height: 90px;
+            background-color: white;
+            border-radius: 8px;
+            color: black;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 5px;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+            font-size: 1.2rem;
+            position: relative;
+        }
+        
+        .playing-card.red { color: #d00; }
+        .playing-card.black { color: #000; }
+        .playing-card.hidden { 
+            background: repeating-linear-gradient(
+                45deg,
+                #b45309,
+                #b45309 10px,
+                #fbbf24 10px,
+                #fbbf24 20px
+            );
+            color: transparent;
+            border: 2px solid #fff;
+        }
+
+        .card-corner { line-height: 1; }
+        .card-center { 
+            position: absolute; 
+            top: 50%; left: 50%; 
+            transform: translate(-50%, -50%); 
+            font-size: 2rem; 
+        }
+        .card-bottom { transform: rotate(180deg); line-height: 1; }
+
+        .bj-label { font-size: 0.9rem; color: #aaa; margin-bottom: 5px; width: 100%; text-align: center; }
 
         footer { margin-top: 50px; padding: 20px; color: #666; font-size: 0.8rem; }
     </style>
 </head>
-<body style="background-color: var(--bg-color); color: var(--text);">
+<body>
 
 <audio id="bg-music" loop>
     <source src="music.mp3" type="audio/mpeg">
-    Twoja przeglądarka nie obsługuje audio.
 </audio>
 
-<div class="music-control">
-    <button id="music-btn" class="music-btn" onclick="toggleMusic()">🎵 Włącz Muzykę</button>
+<div class="settings-control">
+    <div id="settings-options" class="settings-options">
+        <div class="setting-item" onclick="toggleMusic()">
+            <span id="music-status-icon">🔇</span>
+            <span id="music-status-text">Wycisz Muzykę</span>
+        </div>
+    </div>
+    
+    <div class="settings-icon" onclick="toggleSettingsMenu()">
+        ⚙️
+    </div>
 </div>
 
 <div class="banner-container">
-    <img src="banner.jpg" alt="777 Casino Banner" class="banner-img" onerror="this.style.display='none'; this.parentElement.style.height='50px'; this.parentElement.style.backgroundColor='#1a1a1a';">
+    <img src="banner.jpg" alt="Casino Banner" class="banner-img" onerror="this.style.display='none'; this.parentElement.innerHTML='<h2 style=\'padding-top:100px; color:#333\'>BRAK PLIKU banner.jpg</h2>'">
 </div>
 
 <header>
-    <img src="avatar.jpg" alt="Logo" class="avatar-img" onerror="this.style.display='none';">
+    <img src="avatar.jpg" alt="Pepe" class="avatar-img" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png'">
     
     <div class="header-text">
         <h1>777 CASINO</h1>
@@ -248,41 +357,56 @@
     <div class="wallet-box">
         <div>TWOJE SALDO</div>
         <div class="balance-display"><span id="balance">1000</span> $777</div>
-        <button onclick="addFreeTokens()" style="font-size:0.8rem; background:#333; color:#fff; margin-top:10px;">Dobierz darmowe żetony</button>
+        <button onclick="addFreeTokens()" style="background:#334155; color:#fff; border:1px solid #475569; font-size:0.8rem; box-shadow:none;">+ Dobierz Żetony</button>
     </div>
 
     <div class="game-section">
         <div class="game-card">
             <h2>RULETKA</h2>
-            <p>Obstawiaj kolor (x2)</p>
-            <input type="number" id="roulette-bet" class="input-bet" placeholder="Stawka" value="100">
-            <br>
-            <button class="roulette-button red" onclick="spinRoulette('red')">CZERWONE</button>
-            <button class="roulette-button black" onclick="spinRoulette('black')">CZARNE</button>
-            <button class="roulette-button green" onclick="spinRoulette('green')">ZIELONE (x14)</button>
+            <div style="margin-bottom:10px; color:#aaa;">Obstaw kolor</div>
+            <input type="number" id="roulette-bet" class="input-bet" placeholder="Kwota" value="100">
             
-            <div class="roulette-display">
-                <div class="roulette-indicator"></div>
-                <div class="roulette-wheel" id="roulette-wheel"></div>
-                <div class="roulette-result-overlay" id="roulette-result-overlay"></div>
+            <div style="display:flex; gap:5px; justify-content:center; width:100%;">
+                <button onclick="spinRoulette('red')" style="background:var(--red); color:white; flex:1;">RED (x2)</button>
+                <button onclick="spinRoulette('black')" style="background:#111; color:white; border:1px solid #555; flex:1;">BLACK (x2)</button>
+                <button onclick="spinRoulette('green')" style="background:var(--green); color:white; flex:1;">GREEN (x14)</button>
             </div>
-            <div id="roulette-status" class="status-msg"></div>
+
+            <div class="roulette-container">
+                <div class="indicator"></div>
+                <div class="wheel-css" id="wheel-css">
+                    </div>
+                <div class="wheel-center">💎</div>
+            </div>
+            
+            <div id="roulette-result" class="status-msg"></div>
         </div>
 
         <div class="game-card">
             <h2>BLACKJACK</h2>
-            <p>Zdobądź 21</p>
-            <input type="number" id="bj-bet" class="input-bet" placeholder="Stawka" value="100">
-            <div id="bj-board">
-                <div>Krupier: <span id="dealer-cards">?</span></div>
-                <div>Ty: <span id="player-cards">?</span></div>
+            <div style="margin-bottom:10px; color:#aaa;">Wbij 21, pokonaj Pepe</div>
+            <input type="number" id="bj-bet" class="input-bet" placeholder="Kwota" value="100">
+            
+            <div style="width:100%; text-align:center;">
+                <div class="bj-label">KRUPIER</div>
+                <div id="dealer-area" class="cards-area">
+                    <div class="playing-card hidden"><div class="card-center">?</div></div>
+                    <div class="playing-card hidden"><div class="card-center">?</div></div>
+                </div>
+
+                <div class="bj-label" style="margin-top:10px;">TY</div>
+                <div id="player-area" class="cards-area">
+                    <div class="playing-card hidden"><div class="card-center">?</div></div>
+                    <div class="playing-card hidden"><div class="card-center">?</div></div>
+                </div>
             </div>
-            <div id="bj-controls">
-                <button onclick="startBlackjack()">GRAJ</button>
+
+            <div id="bj-controls" style="margin-top:20px;">
+                <button onclick="startBlackjack()" style="width:150px;">ROZDAJ</button>
             </div>
-            <div id="bj-actions" style="display:none;">
+            <div id="bj-actions" style="display:none; margin-top:20px;">
                 <button onclick="hit()">DOBIERZ</button>
-                <button onclick="stand()">STOP</button>
+                <button onclick="stand()" style="background:var(--red); color:white;">STOP</button>
             </div>
             <div id="bj-result" class="status-msg"></div>
         </div>
@@ -290,201 +414,220 @@
 </div>
 
 <footer>
-    <p>Symulator dla społeczności 777. Brak prawdziwego hazardu.</p>
+    <p>$777 MEMECOIN CASINO - NO REAL MONEY INVOLVED<br>Created for the Community.</p>
 </footer>
 
 <script>
-    // --- OBSŁUGA MUZYKI ---
+    // --- MUZYKA I USTAWIENIA ---
     const audio = document.getElementById('bg-music');
-    const musicBtn = document.getElementById('music-btn');
-    audio.volume = 0.3; // Ustaw głośność na 30%
+    const settingsMenu = document.getElementById('settings-options');
+    const musicStatusIcon = document.getElementById('music-status-icon');
+    const musicStatusText = document.getElementById('music-status-text');
 
+    audio.volume = 0.4;
+
+    // 1. Próba automatycznego odtwarzania przy ładowaniu
+    document.addEventListener('DOMContentLoaded', () => {
+        audio.play().catch(e => {
+            console.log("Blokada przeglądarki, muzyka czeka na interakcję.");
+            // Opcjonalnie: Pokaż komunikat w interfejsie
+            musicStatusIcon.innerText = '🔇';
+            musicStatusText.innerText = 'Włącz Muzykę';
+        });
+    });
+
+    // 2. Funkcja przełączająca menu ustawień
+    function toggleSettingsMenu() {
+        settingsMenu.classList.toggle('active');
+    }
+
+    // 3. Funkcja do włączania/wyłączania muzyki
     function toggleMusic() {
         if (audio.paused) {
             audio.play().then(() => {
-                musicBtn.innerHTML = "🔇 Wyłącz Muzykę";
-                musicBtn.style.borderColor = "var(--green)";
-            }).catch(e => console.log("Blokada przeglądarki:", e));
+                musicStatusIcon.innerText = '🔊';
+                musicStatusText.innerText = 'Wycisz Muzykę';
+            }).catch(e => console.error("Błąd odtwarzania:", e));
         } else {
             audio.pause();
-            musicBtn.innerHTML = "🎵 Włącz Muzykę";
-            musicBtn.style.borderColor = "var(--gold)";
+            musicStatusIcon.innerText = '🔇';
+            musicStatusText.innerText = 'Włącz Muzykę';
         }
     }
+    
+    // Ustawienie początkowe ikony
+    audio.addEventListener('playing', () => {
+        musicStatusIcon.innerText = '🔊';
+        musicStatusText.innerText = 'Wycisz Muzykę';
+    });
+    audio.addEventListener('pause', () => {
+        musicStatusIcon.innerText = '🔇';
+        musicStatusText.innerText = 'Włącz Muzykę';
+    });
+    // W przeglądarkach blokujących autoplay, muzyka jest domyślnie zatrzymana
+    musicStatusIcon.innerText = '🔇';
+    musicStatusText.innerText = 'Włącz Muzykę';
 
-    // Próba odpalenia muzyki przy pierwszym kliknięciu gdziekolwiek na stronie
-    document.body.addEventListener('click', function() {
-        if(audio.paused) {
-            // Opcjonalnie: odkomentuj linię niżej, jeśli chcesz auto-play po kliknięciu
-            // toggleMusic();
-        }
-    }, { once: true });
 
-
-    // --- LOGIKA GRY (BEZ ZMIAN) ---
+    // --- PORTFEL ---
     let balance = 1000;
-
+    if(localStorage.getItem('777balance')) {
+        balance = parseInt(localStorage.getItem('777balance'));
+        document.getElementById('balance').innerText = balance;
+    }
     function updateBalance(amount) {
         balance += amount;
         document.getElementById('balance').innerText = balance;
         localStorage.setItem('777balance', balance);
     }
-
     function addFreeTokens() {
-        updateBalance(500);
-        alert("Dodano 500 darmowych tokenów!");
+        updateBalance(1000);
+        alert("Dodano 1000 $777!");
     }
 
-    if(localStorage.getItem('777balance')) {
-        balance = parseInt(localStorage.getItem('777balance'));
-        document.getElementById('balance').innerText = balance;
-    }
-
-    // RULETKA
-    let rouletteSpinning = false;
-    const rouletteWheel = document.getElementById('roulette-wheel');
-    const rouletteResultOverlay = document.getElementById('roulette-result-overlay');
-    const rouletteStatus = document.getElementById('roulette-status');
-    const rouletteButtons = document.querySelectorAll('.roulette-button');
-
-    function enableRouletteButtons(enable) {
-        rouletteButtons.forEach(button => button.disabled = !enable);
-        document.getElementById('roulette-bet').disabled = !enable;
-    }
-
+    // --- RULETKA LOGIKA ---
+    let isSpinning = false;
     function spinRoulette(choice) {
-        if (rouletteSpinning) return;
-
-        const betInput = document.getElementById('roulette-bet');
-        const bet = parseInt(betInput.value);
-
-        if (isNaN(bet) || bet <= 0) { alert("Podaj stawkę!"); return; }
-        if (bet > balance) { alert("Brak środków!"); return; }
-
+        if(isSpinning) return;
+        
+        const bet = parseInt(document.getElementById('roulette-bet').value);
+        if(isNaN(bet) || bet <= 0 || bet > balance) return alert("Błąd stawki!");
+        
         updateBalance(-bet);
-        rouletteSpinning = true;
-        enableRouletteButtons(false);
-        rouletteStatus.className = 'status-msg';
-        rouletteStatus.innerText = "Losowanie...";
-        rouletteResultOverlay.classList.remove('show');
-
-        // Losowanie wyniku (0=green, 1-7=red, 8-14=black)
-        const resultNumber = Math.floor(Math.random() * 15);
+        isSpinning = true;
+        document.getElementById('roulette-result').innerText = "Kręcę...";
+        
+        const wheel = document.getElementById('wheel-css');
+        wheel.style.transition = 'none';
+        wheel.style.transform = 'rotate(0deg)';
+        
+        const result = Math.floor(Math.random() * 15); 
         let color = 'green';
-        if (resultNumber >= 1 && resultNumber <= 7) color = 'red';
-        else if (resultNumber >= 8) color = 'black';
-
-        // Animacja
-        const minRotations = 5;
-        const randomRotation = Math.random() * 360; 
-        const totalRotation = (minRotations * 360) + randomRotation;
-
-        rouletteWheel.style.transition = 'transform 3s cubic-bezier(0.25, 0.1, 0.25, 1)';
-        rouletteWheel.style.transform = `rotate(${totalRotation}deg)`;
+        if(result >= 1 && result <= 7) color = 'red';
+        else if(result >= 8) color = 'black';
+        
+        const randomSpin = 1800 + Math.floor(Math.random() * 360);
+        
+        setTimeout(() => {
+            wheel.style.transition = 'transform 3s cubic-bezier(0.1, 0.7, 0.1, 1)';
+            wheel.style.transform = `rotate(${randomSpin}deg)`;
+        }, 50);
 
         setTimeout(() => {
-            let winAmount = 0;
-            if (choice === color) {
-                winAmount = bet * (color === 'green' ? 14 : 2);
-                updateBalance(winAmount);
-                rouletteStatus.innerText = `Wygrałeś ${winAmount}!`;
-                rouletteStatus.classList.add('win');
+            let win = 0;
+            if(choice === color) {
+                win = bet * (color === 'green' ? 14 : 2);
+                updateBalance(win);
+                document.getElementById('roulette-result').innerHTML = `<span class="win">WYGRANA: ${win} $777 (${color.toUpperCase()})</span>`;
             } else {
-                rouletteStatus.innerText = `Przegrałeś.`;
-                rouletteStatus.classList.add('lose');
+                document.getElementById('roulette-result').innerHTML = `<span class="lose">PRZEGRANA (${color.toUpperCase()})</span>`;
             }
-
-            rouletteResultOverlay.innerText = color.toUpperCase();
-            rouletteResultOverlay.style.color = color === 'red' ? '#ffcccc' : (color === 'green' ? '#ccffcc' : 'white');
-            rouletteResultOverlay.classList.add('show');
-
-            rouletteSpinning = false;
-            enableRouletteButtons(true);
-
-            setTimeout(() => {
-                rouletteWheel.style.transition = 'none';
-                rouletteWheel.style.transform = `rotate(${randomRotation % 360}deg)`;
-            }, 500);
-        }, 3000);
+            isSpinning = false;
+        }, 3100);
     }
 
-    // BLACKJACK
-    let dealerCards = [], playerCards = [], bjBet = 0, gameActive = false;
-    const cards = ['2','3','4','5','6','7','8','9','10','J','Q','K','A'];
+    // --- BLACKJACK LOGIKA ---
+    let dealerHand = [], playerHand = [], bjBet = 0, bjGameOn = false;
+    const suits = ['♥', '♦', '♣', '♠'];
+    const values = ['2','3','4','5','6','7','8','9','10','J','Q','K','A'];
 
-    function getRandomCard() { return cards[Math.floor(Math.random() * cards.length)]; }
-    
-    function getScore(hand) {
-        let score = 0, aces = 0;
-        for (let card of hand) {
-            if (['J','Q','K'].includes(card)) score += 10;
-            else if (card === 'A') { score += 11; aces++; }
-            else score += parseInt(card);
-        }
-        while (score > 21 && aces > 0) { score -= 10; aces--; }
-        return score;
+    function getCard() {
+        const val = values[Math.floor(Math.random() * values.length)];
+        const suit = suits[Math.floor(Math.random() * suits.length)];
+        return { val, suit };
+    }
+
+    function renderCard(card, isHidden = false) {
+        if(isHidden) return `<div class="playing-card hidden"><div class="card-center">?</div></div>`;
+        
+        let colorClass = (card.suit === '♥' || card.suit === '♦') ? 'red' : 'black';
+        return `
+            <div class="playing-card ${colorClass}">
+                <div class="card-corner">${card.val}<br>${card.suit}</div>
+                <div class="card-center">${card.suit}</div>
+                <div class="card-corner card-bottom">${card.val}<br>${card.suit}</div>
+            </div>
+        `;
+    }
+
+    function drawTable(hideDealerSecond) {
+        const dDiv = document.getElementById('dealer-area');
+        const pDiv = document.getElementById('player-area');
+        
+        dDiv.innerHTML = "";
+        dealerHand.forEach((c, i) => {
+            dDiv.innerHTML += renderCard(c, (hideDealerSecond && i === 1));
+        });
+
+        pDiv.innerHTML = "";
+        playerHand.forEach(c => {
+            pDiv.innerHTML += renderCard(c);
+        });
+    }
+
+    function getPoints(hand) {
+        let pts = 0, aces = 0;
+        hand.forEach(c => {
+            if(['J','Q','K'].includes(c.val)) pts += 10;
+            else if(c.val === 'A') { pts += 11; aces++; }
+            else pts += parseInt(c.val);
+        });
+        while(pts > 21 && aces > 0) { pts -= 10; aces--; }
+        return pts;
     }
 
     function startBlackjack() {
-        const betInput = document.getElementById('bj-bet');
-        bjBet = parseInt(betInput.value);
-        if (isNaN(bjBet) || bjBet <= 0) return alert("Podaj stawkę!");
-        if (bjBet > balance) return alert("Brak środków!");
-
-        updateBalance(-bjBet);
-        gameActive = true;
-        dealerCards = [getRandomCard(), getRandomCard()];
-        playerCards = [getRandomCard(), getRandomCard()];
-
+        const bet = parseInt(document.getElementById('bj-bet').value);
+        if(isNaN(bet) || bet <= 0 || bet > balance) return alert("Błąd stawki!");
+        
+        updateBalance(-bet);
+        bjBet = bet;
+        bjGameOn = true;
+        
+        document.getElementById('bj-result').innerText = "";
         document.getElementById('bj-controls').style.display = 'none';
         document.getElementById('bj-actions').style.display = 'block';
-        document.getElementById('bj-result').innerText = "";
+
+        dealerHand = [getCard(), getCard()];
+        playerHand = [getCard(), getCard()];
         
-        drawBoard(true);
-        if (getScore(playerCards) === 21) stand();
+        drawTable(true);
+        
+        if(getPoints(playerHand) === 21) stand();
     }
 
     function hit() {
-        if (!gameActive) return;
-        playerCards.push(getRandomCard());
-        drawBoard(true);
-        if (getScore(playerCards) > 21) endGame("Fura (Przegrałeś)!");
+        if(!bjGameOn) return;
+        playerHand.push(getCard());
+        drawTable(true);
+        if(getPoints(playerHand) > 21) endBj("FURA! Przegrałeś.");
     }
 
     function stand() {
-        if (!gameActive) return;
-        while (getScore(dealerCards) < 17) dealerCards.push(getRandomCard());
-        drawBoard(false);
-        determineWinner();
-    }
-
-    function drawBoard(hideDealer) {
-        let dCards = [...dealerCards];
-        if (hideDealer && gameActive) dCards[1] = "X";
-        document.getElementById('dealer-cards').innerText = dCards.join(" ");
-        document.getElementById('player-cards').innerText = playerCards.join(" ");
-    }
-
-    function determineWinner() {
-        const p = getScore(playerCards), d = getScore(dealerCards);
-        if (d > 21) endGame("Krupier ma furę! Wygrywasz.");
-        else if (p > d) endGame("Wygrałeś!");
-        else if (p === d) endGame("Remis.");
-        else endGame("Przegrałeś.");
-    }
-
-    function endGame(msg) {
-        gameActive = false;
-        document.getElementById('bj-result').innerText = msg;
-        if (msg.includes("Wygra") || msg.includes("Wygrywasz")) {
-            updateBalance(bjBet * 2);
-            document.getElementById('bj-result').classList.add('win');
-        } else if (msg.includes("Remis")) updateBalance(bjBet);
-        else document.getElementById('bj-result').classList.add('lose');
+        if(!bjGameOn) return;
+        while(getPoints(dealerHand) < 17) dealerHand.push(getCard());
+        drawTable(false);
         
+        const p = getPoints(playerHand);
+        const d = getPoints(dealerHand);
+        
+        if(d > 21) endBj("Krupier ma Furę! WYGRYWASZ!", true);
+        else if(p > d) endBj("Masz więcej! WYGRANA!", true);
+        else if(p === d) endBj("REMIS (Zwrot).", false, true);
+        else endBj("Krupier ma więcej. Przegrałeś.");
+    }
+
+    function endBj(msg, win = false, draw = false) {
+        bjGameOn = false;
+        const resDiv = document.getElementById('bj-result');
+        resDiv.innerText = msg;
+        resDiv.className = "status-msg " + (win ? "win" : (draw ? "" : "lose"));
+        
+        if(win) updateBalance(bjBet * 2);
+        if(draw) updateBalance(bjBet);
+
         document.getElementById('bj-controls').style.display = 'block';
         document.getElementById('bj-actions').style.display = 'none';
-        drawBoard(false);
     }
 </script>
 
