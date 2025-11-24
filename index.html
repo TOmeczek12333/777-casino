@@ -24,7 +24,7 @@
             text-align: center;
         }
 
-        /* --- BANER --- */
+        /* --- BANER (Używa object-fit: cover) --- */
         .banner-container {
             width: 100%;
             height: 250px; 
@@ -33,6 +33,9 @@
             overflow: hidden;
             position: relative;
             line-height: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         .banner-img {
             width: 100%;
@@ -40,73 +43,8 @@
             object-fit: cover; 
             display: block;
         }
-
-        /* --- MUZYKA - NOWY STYL KONTROLEK W PRAWYM DOLNYM ROGU --- */
-        .settings-control {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 1000;
-        }
         
-        .settings-icon {
-            background: rgba(30, 41, 59, 0.95); /* Ciemny kolor tła */
-            color: var(--gold);
-            border: 2px solid var(--gold);
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            font-size: 24px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: transform 0.3s;
-            box-shadow: 0 0 15px rgba(251, 191, 36, 0.5);
-            margin-left: auto; /* Ustawia ikonę po prawej stronie */
-        }
-        
-        .settings-icon:hover {
-            transform: rotate(90deg);
-        }
-
-        .settings-options {
-            position: absolute;
-            bottom: 60px; /* Nad ikoną */
-            right: 0;
-            background-color: var(--card-bg);
-            border: 1px solid var(--gold);
-            border-radius: 8px;
-            padding: 10px;
-            width: 150px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(10px);
-            transition: opacity 0.3s, transform 0.3s, visibility 0.3s;
-        }
-
-        .settings-options.active {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .setting-item {
-            padding: 8px 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            color: var(--text);
-            font-size: 0.9rem;
-            transition: color 0.2s;
-        }
-        .setting-item:hover { color: var(--gold); }
-        .setting-item i { margin-right: 5px; }
-
-
-        /* --- NAGŁÓWEK i LAYOUT (Bez zmian) --- */
+        /* --- NAGŁÓWEK i LAYOUT --- */
         header {
             background: linear-gradient(90deg, #000, #1a1a1a);
             padding: 20px;
@@ -203,122 +141,120 @@
         .win { color: var(--green); text-shadow: 0 0 10px rgba(34, 197, 94, 0.5); }
         .lose { color: var(--red); }
 
-        /* --- CSS RULETKA --- */
+        /* --- CSS RULETKA i BLACKJACK (Bez zmian) --- */
         .roulette-container {
             position: relative;
             width: 200px;
             height: 200px;
             margin: 20px auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
-        
         .wheel-css {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            border: 8px solid #d97706;
-            position: relative;
-            overflow: hidden;
-            background: conic-gradient(
-                #ef4444 0deg 24deg, 
-                #000 24deg 48deg,
-                #ef4444 48deg 72deg,
-                #000 72deg 96deg,
-                #ef4444 96deg 120deg,
-                #000 120deg 144deg,
-                #ef4444 144deg 168deg,
-                #000 168deg 192deg,
-                #ef4444 192deg 216deg,
-                #000 216deg 240deg,
-                #ef4444 240deg 264deg,
-                #000 264deg 288deg,
-                #ef4444 288deg 312deg,
-                #000 312deg 336deg,
-                #22c55e 336deg 360deg
-            );
+            width: 100%; height: 100%; border-radius: 50%; border: 8px solid #d97706;
+            position: absolute; top: 0; left: 0;
+            background: conic-gradient(#ef4444 0deg 24deg, #000 24deg 48deg, #ef4444 48deg 72deg, #000 72deg 96deg, #ef4444 96deg 120deg, #000 120deg 144deg, #ef4444 144deg 168deg, #000 168deg 192deg, #ef4444 192deg 216deg, #000 216deg 240deg, #ef4444 240deg 264deg, #000 264deg 288deg, #ef4444 288deg 312deg, #000 312deg 336deg, #22c55e 336deg 360deg);
             box-shadow: 0 0 20px rgba(0,0,0,0.5);
             transition: transform 3s cubic-bezier(0.1, 0.7, 0.1, 1);
         }
-
         .wheel-center {
-            position: absolute;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            width: 40px; height: 40px;
-            background: var(--gold);
-            border-radius: 50%;
-            z-index: 2;
-            box-shadow: 0 0 10px rgba(0,0,0,0.5);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
+            position: relative; width: 40px; height: 40px; background: var(--gold); border-radius: 50%; z-index: 2; box-shadow: 0 0 10px rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
         }
-
         .indicator {
-            position: absolute;
-            top: -10px; left: 50%;
-            transform: translateX(-50%);
-            width: 0; height: 0;
-            border-left: 15px solid transparent;
-            border-right: 15px solid transparent;
-            border-top: 25px solid white;
-            z-index: 5;
-            filter: drop-shadow(0 2px 2px rgba(0,0,0,0.5));
+            position: absolute; top: -10px; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 15px solid transparent; border-right: 15px solid transparent; border-top: 25px solid white; z-index: 5; filter: drop-shadow(0 2px 2px rgba(0,0,0,0.5));
         }
 
-        /* --- VISUAL BLACKJACK CARDS --- */
-        .cards-area {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            min-height: 100px;
-            margin: 10px 0;
-            flex-wrap: wrap;
-        }
-
+        .cards-area { display: flex; justify-content: center; gap: 10px; min-height: 100px; margin: 10px 0; flex-wrap: wrap; }
         .playing-card {
-            width: 60px;
-            height: 90px;
-            background-color: white;
-            border-radius: 8px;
-            color: black;
-            font-family: 'Courier New', monospace;
-            font-weight: bold;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            padding: 5px;
-            box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
-            font-size: 1.2rem;
-            position: relative;
+            width: 60px; height: 90px; background-color: white; border-radius: 8px; color: black; font-family: 'Courier New', monospace; font-weight: bold; display: flex; flex-direction: column; justify-content: space-between; padding: 5px; box-shadow: 2px 2px 5px rgba(0,0,0,0.3); position: relative;
+        }
+        .playing-card.red { color: #d00; }
+        .playing-card.hidden { background: repeating-linear-gradient(45deg, #b45309, #b45309 10px, #fbbf24 10px, #fbbf24 20px); color: transparent; border: 2px solid #fff; }
+        .card-corner { line-height: 1; font-size: 0.9rem; }
+        .card-center { 
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); 
+            font-size: 3rem; /* Poprawiony rozmiar */
+        }
+        .card-bottom { display: none; } /* Ukrywa dolny symbol z rogów */
+
+        /* --- ANIMACJA WYGRANEJ (Konfetti) --- */
+        .win-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 500;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        .win-overlay.show {
+            opacity: 1;
         }
         
-        .playing-card.red { color: #d00; }
-        .playing-card.black { color: #000; }
-        .playing-card.hidden { 
-            background: repeating-linear-gradient(
-                45deg,
-                #b45309,
-                #b45309 10px,
-                #fbbf24 10px,
-                #fbbf24 20px
-            );
-            color: transparent;
-            border: 2px solid #fff;
+        /* --- MODAL (WYMIANA ŻETONÓW) --- */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+        .modal.active { display: flex; }
+
+        .modal-content {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 15px;
+            border: 2px solid var(--gold);
+            width: 90%;
+            max-width: 400px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            animation: fadeIn 0.3s ease-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .card-corner { line-height: 1; }
-        .card-center { 
-            position: absolute; 
-            top: 50%; left: 50%; 
-            transform: translate(-50%, -50%); 
-            font-size: 2rem; 
+        .modal-content h3 {
+            color: var(--gold);
+            margin-top: 0;
+            border-bottom: 1px solid #333;
+            padding-bottom: 10px;
         }
-        .card-bottom { transform: rotate(180deg); line-height: 1; }
 
-        .bj-label { font-size: 0.9rem; color: #aaa; margin-bottom: 5px; width: 100%; text-align: center; }
+        .token-option {
+            background-color: #334155;
+            color: white;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.1s;
+            text-align: left;
+            font-weight: bold;
+        }
+        .token-option:hover {
+            background-color: #475569;
+            transform: scale(1.02);
+        }
+        .token-option span { float: right; color: var(--green); }
 
-        footer { margin-top: 50px; padding: 20px; color: #666; font-size: 0.8rem; }
+        .close-btn {
+            float: right;
+            font-size: 1.5rem;
+            color: #aaa;
+            cursor: pointer;
+        }
+        .close-btn:hover { color: var(--red); }
     </style>
 </head>
 <body>
@@ -327,11 +263,13 @@
     <source src="music.mp3" type="audio/mpeg">
 </audio>
 
+<div id="win-overlay" class="win-overlay"></div>
+
 <div class="settings-control">
     <div id="settings-options" class="settings-options">
         <div class="setting-item" onclick="toggleMusic()">
             <span id="music-status-icon">🔇</span>
-            <span id="music-status-text">Wycisz Muzykę</span>
+            <span id="music-status-text">Włącz Muzykę</span>
         </div>
     </div>
     
@@ -340,12 +278,32 @@
     </div>
 </div>
 
+<div id="token-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeTokenModal()">&times;</span>
+        <h3>💰 Wymień $777 Tokeny</h3>
+        <p style="color:#aaa; font-size:0.9rem;">Wybierz pakiet (symulacja)</p>
+        
+        <div class="token-option" onclick="buyTokens(1000)">
+            Pakiet Srebrny: <span>1000 $777</span>
+        </div>
+        <div class="token-option" onclick="buyTokens(5000)">
+            Pakiet Złoty: <span>5000 $777</span>
+        </div>
+        <div class="token-option" onclick="buyTokens(10000)">
+            Pakiet Diamentowy: <span>10000 $777</span>
+        </div>
+        
+        <p style="margin-top:20px; font-size:0.8rem; color:#666;">*To jest symulacja. Nie dokonujesz prawdziwej wymiany.</p>
+    </div>
+</div>
+
 <div class="banner-container">
-    <img src="banner.jpg" alt="Casino Banner" class="banner-img" onerror="this.style.display='none'; this.parentElement.innerHTML='<h2 style=\'padding-top:100px; color:#333\'>BRAK PLIKU banner.jpg</h2>'">
+    <img src="banner.jpg" alt="Casino Banner" class="banner-img" onerror="this.src='unnamed (1).jpg'">
 </div>
 
 <header>
-    <img src="avatar.jpg" alt="Pepe" class="avatar-img" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png'">
+    <img src="avatar.jpg" alt="Pepe" class="avatar-img" onerror="this.src='unnamed.jpg'">
     
     <div class="header-text">
         <h1>777 CASINO</h1>
@@ -357,7 +315,7 @@
     <div class="wallet-box">
         <div>TWOJE SALDO</div>
         <div class="balance-display"><span id="balance">1000</span> $777</div>
-        <button onclick="addFreeTokens()" style="background:#334155; color:#fff; border:1px solid #475569; font-size:0.8rem; box-shadow:none;">+ Dobierz Żetony</button>
+        <button onclick="openTokenModal()" style="background:#334155; color:#fff; border:1px solid #475569; font-size:0.8rem; box-shadow:none;">+ Dobierz Żetony</button>
     </div>
 
     <div class="game-section">
@@ -418,7 +376,7 @@
 </footer>
 
 <script>
-    // --- MUZYKA I USTAWIENIA ---
+    // --- MUZYKA I USTAWIENIA (Bez zmian) ---
     const audio = document.getElementById('bg-music');
     const settingsMenu = document.getElementById('settings-options');
     const musicStatusIcon = document.getElementById('music-status-icon');
@@ -426,22 +384,18 @@
 
     audio.volume = 0.4;
 
-    // 1. Próba automatycznego odtwarzania przy ładowaniu
     document.addEventListener('DOMContentLoaded', () => {
         audio.play().catch(e => {
             console.log("Blokada przeglądarki, muzyka czeka na interakcję.");
-            // Opcjonalnie: Pokaż komunikat w interfejsie
             musicStatusIcon.innerText = '🔇';
             musicStatusText.innerText = 'Włącz Muzykę';
         });
     });
 
-    // 2. Funkcja przełączająca menu ustawień
     function toggleSettingsMenu() {
         settingsMenu.classList.toggle('active');
     }
 
-    // 3. Funkcja do włączania/wyłączania muzyki
     function toggleMusic() {
         if (audio.paused) {
             audio.play().then(() => {
@@ -455,7 +409,6 @@
         }
     }
     
-    // Ustawienie początkowe ikony
     audio.addEventListener('playing', () => {
         musicStatusIcon.innerText = '🔊';
         musicStatusText.innerText = 'Wycisz Muzykę';
@@ -464,12 +417,10 @@
         musicStatusIcon.innerText = '🔇';
         musicStatusText.innerText = 'Włącz Muzykę';
     });
-    // W przeglądarkach blokujących autoplay, muzyka jest domyślnie zatrzymana
     musicStatusIcon.innerText = '🔇';
     musicStatusText.innerText = 'Włącz Muzykę';
 
-
-    // --- PORTFEL ---
+    // --- PORTFEL (Zmienione: dodano funkcje modalne) ---
     let balance = 1000;
     if(localStorage.getItem('777balance')) {
         balance = parseInt(localStorage.getItem('777balance'));
@@ -480,12 +431,64 @@
         document.getElementById('balance').innerText = balance;
         localStorage.setItem('777balance', balance);
     }
-    function addFreeTokens() {
-        updateBalance(1000);
-        alert("Dodano 1000 $777!");
+    
+    function openTokenModal() {
+        document.getElementById('token-modal').classList.add('active');
+    }
+    function closeTokenModal() {
+        document.getElementById('token-modal').classList.remove('active');
     }
 
-    // --- RULETKA LOGIKA ---
+    function buyTokens(amount) {
+        updateBalance(amount);
+        closeTokenModal();
+    }
+
+    // --- ANIMACJA WYGRANEJ ---
+    function triggerWinAnimation() {
+        const overlay = document.getElementById('win-overlay');
+        overlay.classList.add('show');
+        
+        // Generowanie konfetti (prosta symulacja)
+        for (let i = 0; i < 50; i++) {
+            const confetti = document.createElement('div');
+            confetti.className = 'confetti';
+            confetti.style.width = `${Math.random() * 8 + 5}px`;
+            confetti.style.height = `${Math.random() * 8 + 5}px`;
+            confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+            confetti.style.position = 'fixed';
+            confetti.style.left = `${Math.random() * 100}vw`;
+            confetti.style.top = `${-20}px`;
+            confetti.style.opacity = Math.random();
+            confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+            confetti.style.transition = `transform ${Math.random() * 4 + 2}s linear, top ${Math.random() * 4 + 2}s linear`;
+            
+            // Wymuszenie animacji
+            setTimeout(() => {
+                confetti.style.top = '100vh';
+                confetti.style.transform += `translateX(${Math.random() * 500 - 250}px) rotate(${Math.random() * 1080}deg)`;
+            }, 10);
+            
+            overlay.appendChild(confetti);
+            
+            // Usunięcie po zakończeniu animacji
+            setTimeout(() => confetti.remove(), 6000);
+        }
+
+        // Ukrycie nakładki
+        setTimeout(() => {
+            overlay.classList.remove('show');
+        }, 3000);
+    }
+
+    // Dodanie stylów dla konfetti (dynamiczny styl)
+    const styleSheet = document.createElement("style");
+    styleSheet.type = "text/css";
+    styleSheet.innerText = ".confetti { position: fixed; border-radius: 50%; }";
+    document.head.appendChild(styleSheet);
+
+
+    // --- RULETKA LOGIKA (Zmienione: dodano animację wygranej) ---
     let isSpinning = false;
     function spinRoulette(choice) {
         if(isSpinning) return;
@@ -519,6 +522,7 @@
                 win = bet * (color === 'green' ? 14 : 2);
                 updateBalance(win);
                 document.getElementById('roulette-result').innerHTML = `<span class="win">WYGRANA: ${win} $777 (${color.toUpperCase()})</span>`;
+                triggerWinAnimation(); // <-- Dodanie animacji
             } else {
                 document.getElementById('roulette-result').innerHTML = `<span class="lose">PRZEGRANA (${color.toUpperCase()})</span>`;
             }
@@ -526,7 +530,7 @@
         }, 3100);
     }
 
-    // --- BLACKJACK LOGIKA ---
+    // --- BLACKJACK LOGIKA (Zmienione: dodano animację wygranej) ---
     let dealerHand = [], playerHand = [], bjBet = 0, bjGameOn = false;
     const suits = ['♥', '♦', '♣', '♠'];
     const values = ['2','3','4','5','6','7','8','9','10','J','Q','K','A'];
@@ -545,7 +549,6 @@
             <div class="playing-card ${colorClass}">
                 <div class="card-corner">${card.val}<br>${card.suit}</div>
                 <div class="card-center">${card.suit}</div>
-                <div class="card-corner card-bottom">${card.val}<br>${card.suit}</div>
             </div>
         `;
     }
@@ -623,7 +626,10 @@
         resDiv.innerText = msg;
         resDiv.className = "status-msg " + (win ? "win" : (draw ? "" : "lose"));
         
-        if(win) updateBalance(bjBet * 2);
+        if(win) {
+            updateBalance(bjBet * 2);
+            triggerWinAnimation(); // <-- Dodanie animacji
+        }
         if(draw) updateBalance(bjBet);
 
         document.getElementById('bj-controls').style.display = 'block';
