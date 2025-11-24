@@ -24,14 +24,20 @@
             text-align: center;
         }
 
-        /* --- BANER i NAGŁÓWEK --- */
+        /* --- BANER i NAGŁÓWEK (Poprawione skalowanie obrazów) --- */
         .banner-container {
-            width: 100%; height: 250px; border-bottom: 4px solid var(--gold);
+            width: 100%; 
+            height: 200px; /* Zmniejszona wysokość, aby lepiej pasowała */
+            border-bottom: 4px solid var(--gold);
             background-color: #000; overflow: hidden; position: relative;
             display: flex; justify-content: center; align-items: center;
         }
         .banner-img {
-            width: 100%; height: 100%; object-fit: cover; display: block;
+            /* Zapewniamy, że obraz zajmuje całą dostępną przestrzeń i jest obcięty, a nie rozciągnięty */
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            display: block;
         }
         
         header {
@@ -49,7 +55,7 @@
         h1 { margin: 0; color: var(--gold); font-size: 2.2rem; text-transform: uppercase; letter-spacing: 2px; }
         .subtitle { color: #aaa; font-size: 0.9rem; margin-top: 5px; }
 
-        .container { max-width: 900px; margin: 20px auto; padding: 20px; }
+        .container { max-width: 1200px; margin: 20px auto; padding: 20px; } 
 
         /* --- WALLET --- */
         .wallet-box {
@@ -59,9 +65,12 @@
         }
         .balance-display { font-size: 2rem; font-weight: bold; color: var(--green); margin: 10px 0; text-shadow: 0 0 10px rgba(34, 197, 94, 0.3); }
 
-        /* --- GRY LAYOUT --- */
+        /* --- GRY LAYOUT (Poprawiony) --- */
         .game-section { display: grid; grid-template-columns: 1fr; gap: 20px; }
+        /* 2 kolumny na tabletach */
         @media(min-width: 768px) { .game-section { grid-template-columns: 1fr 1fr; } }
+        /* 3 kolumny na dużych desktopach, aby pomieścić sloty, ruletkę i blackjacka */
+        @media(min-width: 1000px) { .game-section { grid-template-columns: 1fr 1fr 1fr; } } 
 
         .game-card {
             background-color: var(--card-bg); padding: 20px; border-radius: 12px;
@@ -90,10 +99,37 @@
         .win { color: var(--green); text-shadow: 0 0 10px rgba(34, 197, 94, 0.5); }
         .lose { color: var(--red); }
 
-        /* --- RULETKA (Centrowanie) --- */
+        /* --- SLOTY CSS (Bez zmian) --- */
+        .slot-machine {
+            display: flex; justify-content: center; gap: 5px; margin: 20px 0;
+            background: #000; padding: 10px; border-radius: 8px; border: 3px solid #64748b;
+        }
+
+        .reel {
+            width: 60px; height: 90px; overflow: hidden; position: relative;
+            border: 1px solid #333; border-radius: 4px; background: #111;
+        }
+
+        .slot-display {
+            font-size: 48px; position: absolute; top: 0; left: 0; 
+            width: 100%; text-align: center; line-height: 90px;
+            transition: transform 3s cubic-bezier(0.1, 0.7, 0.1, 1);
+            color: var(--gold); 
+            font-family: monospace;
+        }
+
+        .slot-payouts {
+            width: 100%; background: #0f172a; border-radius: 6px; padding: 10px;
+            margin-top: 15px; font-size: 0.85rem; text-align: left; border: 1px solid #334155;
+        }
+        .slot-payouts div { margin: 3px 0; }
+        .slot-payouts span { float: right; color: var(--green); font-weight: bold; }
+
+
+        /* --- RULETKA CSS (Bez zmian) --- */
         .roulette-container {
             position: relative; width: 200px; height: 200px; 
-            margin: 20px auto 0 auto; /* Użycie margin: auto do centrowania */
+            margin: 20px auto 0 auto; 
             display: flex; justify-content: center; align-items: center;
         }
         .wheel-css {
@@ -114,36 +150,43 @@
             border-top: 25px solid white; z-index: 5; filter: drop-shadow(0 2px 2px rgba(0,0,0,0.5));
         }
 
-        /* --- BLACKJACK (Karty) --- */
+        /* --- BLACKJACK CSS (Poprawione) --- */
         .cards-area { 
-            display: flex; justify-content: center; gap: 10px; min-height: 100px;
-            margin: 10px 0; flex-wrap: wrap; 
+            display: flex; 
+            justify-content: center; 
+            gap: 5px; /* Mniejszy odstęp między kartami */
+            min-height: 100px;
+            margin: 10px 0; 
+            flex-wrap: wrap; 
         }
         .playing-card {
-            width: 60px; height: 90px; background-color: white; border-radius: 8px;
+            width: 50px; /* Zmniejszona szerokość karty */
+            height: 75px; /* Zmniejszona wysokość karty (proporcja 2:3) */
+            background-color: white; border-radius: 6px; /* Lekko mniejszy promień */
             color: black; font-family: 'Courier New', monospace; font-weight: bold;
-            display: flex; flex-direction: column; justify-content: space-between;
-            padding: 5px; box-shadow: 2px 2px 5px rgba(0,0,0,0.3); position: relative;
+            display: flex; flex-direction: column; 
+            padding: 3px; /* Mniejszy padding */
+            box-shadow: 1px 1px 3px rgba(0,0,0,0.3); position: relative;
         }
         .playing-card.red { color: #d00; }
         .playing-card.hidden { 
-            background: repeating-linear-gradient(45deg, #b45309, #b45309 10px, #fbbf24 10px, #fbbf24 20px);
+            background: repeating-linear-gradient(45deg, #b45309, #b45309 8px, #fbbf24 8px, #fbbf24 16px); /* Dostosowane tło */
             color: transparent; border: 2px solid #fff; 
         }
-        /* Zmienione: Używamy tylko jednego rogu */
         .card-corner { 
-            line-height: 1; font-size: 0.9rem; position: absolute; top: 5px; left: 5px; 
+            line-height: 1; 
+            font-size: 0.8rem; /* Mniejsza czcionka w rogu */
+            position: absolute; top: 3px; left: 3px; 
         }
         .card-center { 
             position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); 
-            font-size: 3rem; /* Duży symbol na środku */
+            font-size: 2.2rem; /* Mniejszy symbol na środku */
         }
-        .card-bottom { display: none; } /* Upewniamy się, że nie ma drugiego rogu */
-
+        .card-bottom { display: none; } 
         .bj-label { color: #aaa; margin-top: 5px; font-size: 0.9rem;}
 
 
-        /* --- ANIMACJA WYGRANEJ i MODAL --- */
+        /* --- MODAL i USTAWIENIA (Pozostały CSS) --- */
         .win-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 500; opacity: 0; transition: opacity 0.5s ease;
         }
@@ -176,8 +219,6 @@
 
         .close-btn { float: right; font-size: 1.5rem; color: #aaa; cursor: pointer; }
         .close-btn:hover { color: var(--red); }
-
-        /* --- MUZYKA - KONTROLKI (Prawy Dół) --- */
         .settings-control {
             position: fixed; bottom: 20px; right: 20px; z-index: 1000;
         }
@@ -261,6 +302,30 @@
     </div>
 
     <div class="game-section">
+        
+        <div class="game-card">
+            <h2>SLOTY (777)</h2>
+            <div style="margin-bottom:10px; color:#aaa;">Poczuj ducha Las Vegas</div>
+            
+            <input type="number" id="slots-bet" class="input-bet" placeholder="Kwota" value="50">
+            
+            <button onclick="spinSlots()">SPIN</button>
+
+            <div class="slot-machine">
+                <div class="reel"><div class="slot-display" id="reel1">🍒</div></div>
+                <div class="reel"><div class="slot-display" id="reel2">🍒</div></div>
+                <div class="reel"><div class="slot-display" id="reel3">🍒</div></div>
+            </div>
+
+            <div id="slots-result" class="status-msg"></div>
+
+            <div class="slot-payouts">
+                <div style="color:var(--gold);">Jackpot (7️⃣ 7️⃣ 7️⃣) <span>x10</span></div>
+                <div style="color:var(--text);">Trzy takie same <span>x3</span></div>
+                <div style="color:#666;">Dwie 7️⃣ <span>x2</span></div>
+            </div>
+        </div>
+
         <div class="game-card">
             <h2>RULETKA</h2>
             <div style="margin-bottom:10px; color:#aaa;">Obstaw kolor</div>
@@ -413,17 +478,102 @@
         }, 3000);
     }
 
+    // =======================================================
+    // === LOGIKA SLOTÓW ===
+    // =======================================================
+    const symbols = ['🍒', '🍋', '7️⃣'];
+    let isSlotsSpinning = false;
 
-    // --- RULETKA LOGIKA ---
-    let isSpinning = false;
+    function getRandomSymbol() {
+        return symbols[Math.floor(Math.random() * symbols.length)];
+    }
+
+    function animateReel(reelId, finalSymbol, duration) {
+        const reel = document.getElementById(reelId);
+        const symbolHeight = 90; 
+        const totalSymbols = 20; 
+        
+        let animationContent = '';
+        for (let i = 0; i < totalSymbols - 1; i++) {
+            animationContent += getRandomSymbol() + '<br>';
+        }
+        animationContent += finalSymbol;
+
+        reel.innerHTML = animationContent;
+        
+        const finalPosition = (totalSymbols - 1) * symbolHeight;
+        
+        reel.style.transition = 'none';
+        reel.style.transform = `translateY(0px)`;
+
+        setTimeout(() => {
+            reel.style.transition = `transform ${duration}ms cubic-bezier(0.1, 0.7, 0.1, 1)`;
+            reel.style.transform = `translateY(-${finalPosition}px)`;
+        }, 50);
+    }
+
+    function spinSlots() {
+        if(isSlotsSpinning) return;
+        
+        const bet = parseInt(document.getElementById('slots-bet').value);
+        if(isNaN(bet) || bet <= 0 || bet > balance) return alert("Błąd stawki! Za mało żetonów lub niepoprawna stawka.");
+        
+        updateBalance(-bet);
+        isSlotsSpinning = true;
+        document.getElementById('slots-result').innerText = "Kręcę...";
+        
+        const results = [getRandomSymbol(), getRandomSymbol(), getRandomSymbol()];
+
+        animateReel('reel1', results[0], 2500);
+        animateReel('reel2', results[1], 3500);
+        animateReel('reel3', results[2], 4500);
+
+        setTimeout(() => {
+            const [s1, s2, s3] = results;
+            let winMultiplier = 0;
+            let winMsg = `<span class="lose">PRZEGRANA</span>`;
+            
+            if (s1 === s2 && s2 === s3) {
+                if (s1 === '7️⃣') {
+                    winMultiplier = 10; 
+                    winMsg = `<span class="win" style="font-size:1.5rem;">JACKPOT! x10!</span>`;
+                } else {
+                    winMultiplier = 3;
+                    winMsg = `<span class="win">TRZY TAKIE SAME! x3!</span>`;
+                }
+            } else if ((s1 === '7️⃣' && s2 === '7️⃣') || (s1 === '7️⃣' && s3 === '7️⃣') || (s2 === '7️⃣' && s3 === '7️⃣')) {
+                winMultiplier = 2;
+                winMsg = `<span class="win">DWIE 7️⃣! x2!</span>`;
+            }
+
+            const winAmount = bet * winMultiplier;
+            updateBalance(winAmount);
+            
+            if (winAmount > 0) {
+                 document.getElementById('slots-result').innerHTML = winMsg + `<br>WYGRANA: ${winAmount} $777`;
+                 triggerWinAnimation();
+            } else {
+                 document.getElementById('slots-result').innerHTML = winMsg;
+            }
+
+            isSlotsSpinning = false;
+
+        }, 4600); 
+    }
+
+
+    // =======================================================
+    // === LOGIKA RULETKI ===
+    // =======================================================
+    let isRouletteSpinning = false;
     function spinRoulette(choice) {
-        if(isSpinning) return;
+        if(isRouletteSpinning) return;
         
         const bet = parseInt(document.getElementById('roulette-bet').value);
         if(isNaN(bet) || bet <= 0 || bet > balance) return alert("Błąd stawki!");
         
         updateBalance(-bet);
-        isSpinning = true;
+        isRouletteSpinning = true;
         document.getElementById('roulette-result').innerText = "Kręcę...";
         
         const wheel = document.getElementById('wheel-css');
@@ -452,11 +602,13 @@
             } else {
                 document.getElementById('roulette-result').innerHTML = `<span class="lose">PRZEGRANA (${color.toUpperCase()})</span>`;
             }
-            isSpinning = false;
+            isRouletteSpinning = false;
         }, 3100);
     }
 
-    // --- BLACKJACK LOGIKA ---
+    // =======================================================
+    // === LOGIKA BLACKJACKA ===
+    // =======================================================
     let dealerHand = [], playerHand = [], bjBet = 0, bjGameOn = false;
     const suits = ['♥', '♦', '♣', '♠'];
     const values = ['2','3','4','5','6','7','8','9','10','J','Q','K','A'];
