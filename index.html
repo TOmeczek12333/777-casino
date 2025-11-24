@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>777 Casino - Memecoin</title>
     <style>
+        /* GŁÓWNE STYLE */
         :root {
             --bg-color: #0f172a;
             --card-bg: #1e293b;
@@ -16,51 +17,59 @@
 
         body {
             font-family: 'Arial', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text);
+            background-color: #0f172a; /* Zabezpieczenie koloru tła */
+            color: #f8fafc;
             margin: 0;
             padding: 0;
             text-align: center;
         }
 
-        /* Styl Banera */
+        /* BANER */
         .banner-container {
             width: 100%;
             max-height: 250px;
             overflow: hidden;
             border-bottom: 4px solid var(--gold);
+            background-color: #000;
         }
         .banner-img {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Dzięki temu baner ładnie wypełni przestrzeń */
+            object-fit: cover;
             display: block;
         }
 
+        /* NAGŁÓWEK */
         header {
             background: linear-gradient(90deg, #000, #333);
             padding: 20px;
             border-bottom: 2px solid var(--gold);
             display: flex;
+            flex-direction: row;
             align-items: center;
             justify-content: center;
-            gap: 20px; /* Odstęp między avatarem a tekstem */
+            gap: 20px;
+            flex-wrap: wrap;
         }
 
-        /* Styl Avatara */
         .avatar-img {
             width: 80px;
             height: 80px;
             border-radius: 50%;
             border: 3px solid var(--gold);
             box-shadow: 0 0 15px rgba(251, 191, 36, 0.5);
+            background-color: #000;
         }
 
-        .header-text {
-            text-align: left;
+        .header-text { text-align: left; }
+        
+        /* Jeśli ekran jest mały, wyśrodkuj tekst */
+        @media(max-width: 500px) {
+            .header-text { text-align: center; }
+            header { flex-direction: column; }
         }
 
-        h1 { margin: 0; color: var(--gold); font-size: 2.5rem; text-transform: uppercase; letter-spacing: 2px; }
+        h1 { margin: 0; color: var(--gold); font-size: 2.2rem; text-transform: uppercase; letter-spacing: 2px; line-height: 1.1; }
         .subtitle { color: #aaa; font-size: 0.9rem; margin-top: 5px; }
 
         .container {
@@ -69,7 +78,7 @@
             padding: 20px;
         }
 
-        /* Sekcja Balansu */
+        /* PORTFEL I KARTY */
         .wallet-box {
             background-color: var(--card-bg);
             padding: 20px;
@@ -80,7 +89,6 @@
         }
         .balance-display { font-size: 1.8rem; font-weight: bold; color: var(--green); }
 
-        /* Karty gier */
         .game-section {
             display: grid;
             grid-template-columns: 1fr;
@@ -98,7 +106,7 @@
             border: 1px solid #334155;
         }
 
-        h2 { color: var(--gold); }
+        h2 { color: var(--gold); margin-top: 0; }
         
         button {
             background-color: var(--gold);
@@ -129,26 +137,19 @@
         .win { color: var(--green); }
         .lose { color: var(--red); }
 
-        /* Blackjack Visuals */
-        #bj-board { font-size: 1.2rem; margin: 15px 0; letter-spacing: 3px; }
+        #bj-board { font-size: 1.2rem; margin: 15px 0; letter-spacing: 2px; background: #111; padding: 10px; border-radius: 5px; }
         
-        /* Footer */
-        footer {
-            margin-top: 50px;
-            padding: 20px;
-            color: #666;
-            font-size: 0.8rem;
-        }
+        footer { margin-top: 50px; padding: 20px; color: #666; font-size: 0.8rem; }
     </style>
 </head>
-<body>
+<body style="background-color: #0f172a; color: white;">
 
 <div class="banner-container">
-    <img src="banner.jpg" alt="777 Casino Banner" class="banner-img">
+    <img src="banner.jpg" alt="777 Casino Banner" class="banner-img" onerror="this.style.display='none'">
 </div>
 
 <header>
-    <img src="avatar.jpg" alt="777 Logo" class="avatar-img">
+    <img src="avatar.jpg" alt="Logo" class="avatar-img" onerror="this.style.display='none'">
     
     <div class="header-text">
         <h1>777 CASINO</h1>
@@ -196,11 +197,11 @@
 </div>
 
 <footer>
-    <p>To jest symulator. Tokeny nie mają prawdziwej wartości.<br>Projekt społeczności 777.</p>
+    <p>Symulator dla społeczności 777. Brak prawdziwego hazardu.</p>
 </footer>
 
 <script>
-    // --- SKRYPT GRY ---
+    // LOGIKA GRY
     let balance = 1000;
 
     function updateBalance(amount) {
@@ -211,7 +212,7 @@
 
     function addFreeTokens() {
         updateBalance(500);
-        alert("Dodano 500 darmowych tokenów $777!");
+        alert("Dodano 500 darmowych tokenów!");
     }
 
     if(localStorage.getItem('777balance')) {
@@ -219,18 +220,18 @@
         document.getElementById('balance').innerText = balance;
     }
 
-    // --- RULETKA ---
+    // RULETKA
     function spinRoulette(choice) {
         const betInput = document.getElementById('roulette-bet');
         const bet = parseInt(betInput.value);
         const msg = document.getElementById('roulette-result');
 
-        if (isNaN(bet) || bet <= 0) return alert("Podaj prawidłową stawkę!");
-        if (bet > balance) return alert("Brak wystarczających środków!");
+        if (isNaN(bet) || bet <= 0) return alert("Podaj stawkę!");
+        if (bet > balance) return alert("Brak środków!");
 
         updateBalance(-bet);
         msg.className = 'status-msg';
-        msg.innerText = "Kręcę...";
+        msg.innerText = "Losowanie...";
 
         setTimeout(() => {
             const result = Math.floor(Math.random() * 15);
@@ -242,16 +243,16 @@
                 let winAmount = bet * 2;
                 if (color === 'green') winAmount = bet * 14;
                 updateBalance(winAmount);
-                msg.innerText = `Wypadło ${color.toUpperCase()}! Wygrałeś ${winAmount}!`;
+                msg.innerText = `Wygrałeś! (${color.toUpperCase()})`;
                 msg.classList.add('win');
             } else {
-                msg.innerText = `Wypadło ${color.toUpperCase()}. Przegrałeś.`;
+                msg.innerText = `Przegrałeś. (${color.toUpperCase()})`;
                 msg.classList.add('lose');
             }
-        }, 1000);
+        }, 800);
     }
 
-    // --- BLACKJACK ---
+    // BLACKJACK
     let dealerCards = [];
     let playerCards = [];
     let bjBet = 0;
@@ -277,7 +278,6 @@
     function startBlackjack() {
         const betInput = document.getElementById('bj-bet');
         bjBet = parseInt(betInput.value);
-
         if (isNaN(bjBet) || bjBet <= 0) return alert("Podaj stawkę!");
         if (bjBet > balance) return alert("Brak środków!");
 
@@ -298,14 +298,12 @@
         if (!gameActive) return;
         playerCards.push(getRandomCard());
         drawBoard(true);
-        if (getScore(playerCards) > 21) endGame("Przegrałeś (Fura)!");
+        if (getScore(playerCards) > 21) endGame("Fura (Przegrałeś)!");
     }
 
     function stand() {
         if (!gameActive) return;
-        while (getScore(dealerCards) < 17) {
-            dealerCards.push(getRandomCard());
-        }
+        while (getScore(dealerCards) < 17) dealerCards.push(getRandomCard());
         drawBoard(false);
         determineWinner();
     }
@@ -320,17 +318,16 @@
     function determineWinner() {
         const pScore = getScore(playerCards);
         const dScore = getScore(dealerCards);
-        
-        if (dScore > 21) endGame("Wygrałeś! Krupier miał furę.");
+        if (dScore > 21) endGame("Krupier ma furę! Wygrywasz.");
         else if (pScore > dScore) endGame("Wygrałeś!");
-        else if (pScore === dScore) endGame("Remis (Zwrot).");
+        else if (pScore === dScore) endGame("Remis.");
         else endGame("Przegrałeś.");
     }
 
     function endGame(msgText) {
         gameActive = false;
         document.getElementById('bj-result').innerText = msgText;
-        if (msgText.includes("Wygrałeś")) {
+        if (msgText.includes("Wygra") || msgText.includes("Wygrywasz")) {
             updateBalance(bjBet * 2);
             document.getElementById('bj-result').classList.add('win');
         } else if (msgText.includes("Remis")) {
