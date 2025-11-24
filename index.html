@@ -24,81 +24,20 @@
             text-align: center;
         }
 
-        /* --- BANER (Używa object-fit: cover) --- */
+        /* --- BANER i NAGŁÓWEK --- */
         .banner-container {
-            width: 100%;
-            height: 250px; 
-            border-bottom: 4px solid var(--gold);
-            background-color: #000;
-            overflow: hidden;
-            position: relative;
-            line-height: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            width: 100%; height: 250px; border-bottom: 4px solid var(--gold);
+            background-color: #000; overflow: hidden; position: relative;
+            display: flex; justify-content: center; align-items: center;
         }
         .banner-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover; 
-            display: block;
+            width: 100%; height: 100%; object-fit: cover; display: block;
         }
         
-        /* --- MUZYKA - KONTROLKI (Prawy Dół) --- */
-        .settings-control {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 1000;
-        }
-        .settings-icon {
-            background: rgba(30, 41, 59, 0.95);
-            color: var(--gold);
-            border: 2px solid var(--gold);
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            font-size: 24px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: transform 0.3s;
-            box-shadow: 0 0 15px rgba(251, 191, 36, 0.5);
-            margin-left: auto;
-        }
-        .settings-icon:hover { transform: rotate(90deg); }
-        .settings-options {
-            position: absolute;
-            bottom: 60px;
-            right: 0;
-            background-color: var(--card-bg);
-            border: 1px solid var(--gold);
-            border-radius: 8px;
-            padding: 10px;
-            width: 150px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(10px);
-            transition: opacity 0.3s, transform 0.3s, visibility 0.3s;
-        }
-        .settings-options.active { opacity: 1; visibility: visible; transform: translateY(0); }
-        .setting-item { padding: 8px 0; display: flex; justify-content: space-between; align-items: center; cursor: pointer; color: var(--text); font-size: 0.9rem; transition: color 0.2s; }
-        .setting-item:hover { color: var(--gold); }
-        .setting-item i { margin-right: 5px; }
-        
-        /* --- NAGŁÓWEK i LAYOUT --- */
         header {
-            background: linear-gradient(90deg, #000, #1a1a1a);
-            padding: 20px;
-            border-bottom: 2px solid var(--gold);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 20px;
-            position: relative;
-            margin-top: -4px;
+            background: linear-gradient(90deg, #000, #1a1a1a); padding: 20px;
+            border-bottom: 2px solid var(--gold); display: flex; align-items: center;
+            justify-content: center; gap: 20px; position: relative; margin-top: -4px;
         }
 
         .avatar-img {
@@ -112,19 +51,22 @@
 
         .container { max-width: 900px; margin: 20px auto; padding: 20px; }
 
+        /* --- WALLET --- */
         .wallet-box {
-            background: linear-gradient(180deg, #1e293b, #0f172a);
-            padding: 20px; border-radius: 15px; margin-bottom: 30px; border: 1px solid var(--gold);
+            background: linear-gradient(180deg, #1e293b, #0f172a); padding: 20px;
+            border-radius: 15px; margin-bottom: 30px; border: 1px solid var(--gold);
             box-shadow: 0 0 20px rgba(251, 191, 36, 0.15);
         }
         .balance-display { font-size: 2rem; font-weight: bold; color: var(--green); margin: 10px 0; text-shadow: 0 0 10px rgba(34, 197, 94, 0.3); }
 
+        /* --- GRY LAYOUT --- */
         .game-section { display: grid; grid-template-columns: 1fr; gap: 20px; }
         @media(min-width: 768px) { .game-section { grid-template-columns: 1fr 1fr; } }
 
         .game-card {
-            background-color: var(--card-bg); padding: 20px; border-radius: 12px; border: 1px solid #334155;
-            display: flex; flex-direction: column; align-items: center;
+            background-color: var(--card-bg); padding: 20px; border-radius: 12px;
+            border: 1px solid #334155; display: flex; flex-direction: column;
+            align-items: center;
         }
 
         h2 { color: var(--gold); margin-top: 0; letter-spacing: 1px; border-bottom: 1px solid #333; width: 100%; padding-bottom: 10px; margin-bottom: 15px;}
@@ -139,18 +81,19 @@
         button:disabled { background-color: #555; color: #888; box-shadow: none; cursor: not-allowed; transform: none; }
 
         .input-bet {
-            padding: 12px; border-radius: 8px; border: 2px solid #334155; background: #0f172a;
-            color: white; width: 100px; text-align: center; font-size: 1.1rem; margin-bottom: 15px;
+            padding: 12px; border-radius: 8px; border: 2px solid #334155;
+            background: #0f172a; color: white; width: 100px; text-align: center;
+            font-size: 1.1rem; margin-bottom: 15px;
         }
 
-        /* POPRAWIONE: Domyślny kolor tekstu statusu */
         .status-msg { margin-top: 15px; font-weight: bold; min-height: 24px; font-size: 1.1rem; color: var(--text); } 
         .win { color: var(--green); text-shadow: 0 0 10px rgba(34, 197, 94, 0.5); }
         .lose { color: var(--red); }
 
-        /* --- CSS RULETKA i BLACKJACK (Poprawione centrowanie ruletki i styl kart) --- */
+        /* --- RULETKA (Centrowanie) --- */
         .roulette-container {
-            position: relative; width: 200px; height: 200px; margin: 20px auto;
+            position: relative; width: 200px; height: 200px; 
+            margin: 20px auto 0 auto; /* Użycie margin: auto do centrowania */
             display: flex; justify-content: center; align-items: center;
         }
         .wheel-css {
@@ -161,33 +104,52 @@
             transition: transform 3s cubic-bezier(0.1, 0.7, 0.1, 1);
         }
         .wheel-center {
-            position: relative; width: 40px; height: 40px; background: var(--gold); border-radius: 50%; z-index: 2; box-shadow: 0 0 10px rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
+            position: relative; width: 40px; height: 40px; background: var(--gold);
+            border-radius: 50%; z-index: 2; box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
         }
         .indicator {
-            position: absolute; top: -10px; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 15px solid transparent; border-right: 15px solid transparent; border-top: 25px solid white; z-index: 5; filter: drop-shadow(0 2px 2px rgba(0,0,0,0.5));
+            position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
+            width: 0; height: 0; border-left: 15px solid transparent; border-right: 15px solid transparent;
+            border-top: 25px solid white; z-index: 5; filter: drop-shadow(0 2px 2px rgba(0,0,0,0.5));
         }
 
-        .cards-area { display: flex; justify-content: center; gap: 10px; min-height: 100px; margin: 10px 0; flex-wrap: wrap; }
+        /* --- BLACKJACK (Karty) --- */
+        .cards-area { 
+            display: flex; justify-content: center; gap: 10px; min-height: 100px;
+            margin: 10px 0; flex-wrap: wrap; 
+        }
         .playing-card {
-            width: 60px; height: 90px; background-color: white; border-radius: 8px; color: black; font-family: 'Courier New', monospace; font-weight: bold; display: flex; flex-direction: column; justify-content: space-between; padding: 5px; box-shadow: 2px 2px 5px rgba(0,0,0,0.3); position: relative;
+            width: 60px; height: 90px; background-color: white; border-radius: 8px;
+            color: black; font-family: 'Courier New', monospace; font-weight: bold;
+            display: flex; flex-direction: column; justify-content: space-between;
+            padding: 5px; box-shadow: 2px 2px 5px rgba(0,0,0,0.3); position: relative;
         }
         .playing-card.red { color: #d00; }
-        .playing-card.hidden { background: repeating-linear-gradient(45deg, #b45309, #b45309 10px, #fbbf24 10px, #fbbf24 20px); color: transparent; border: 2px solid #fff; }
-        .card-corner { line-height: 1; font-size: 0.9rem; }
+        .playing-card.hidden { 
+            background: repeating-linear-gradient(45deg, #b45309, #b45309 10px, #fbbf24 10px, #fbbf24 20px);
+            color: transparent; border: 2px solid #fff; 
+        }
+        /* Zmienione: Używamy tylko jednego rogu */
+        .card-corner { 
+            line-height: 1; font-size: 0.9rem; position: absolute; top: 5px; left: 5px; 
+        }
         .card-center { 
             position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); 
-            font-size: 3rem; 
+            font-size: 3rem; /* Duży symbol na środku */
         }
-        .card-bottom { display: none; } /* Ukrywa dolny symbol z rogów */
+        .card-bottom { display: none; } /* Upewniamy się, że nie ma drugiego rogu */
 
-        /* --- ANIMACJA WYGRANEJ (Konfetti) --- */
+        .bj-label { color: #aaa; margin-top: 5px; font-size: 0.9rem;}
+
+
+        /* --- ANIMACJA WYGRANEJ i MODAL --- */
         .win-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 500; opacity: 0; transition: opacity 0.5s ease;
         }
         .win-overlay.show { opacity: 1; }
-        .confetti { position: fixed; border-radius: 50%; } /* Dodany styl dla konfetti */
+        .confetti { position: fixed; border-radius: 50%; } 
         
-        /* --- MODAL (WYMIANA ŻETONÓW) --- */
         .modal {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.7);
             display: none; align-items: center; justify-content: center; z-index: 1000;
@@ -214,372 +176,8 @@
 
         .close-btn { float: right; font-size: 1.5rem; color: #aaa; cursor: pointer; }
         .close-btn:hover { color: var(--red); }
-    </style>
-</head>
-<body>
 
-<audio id="bg-music" loop>
-    <source src="music.mp3" type="audio/mpeg">
-</audio>
-
-<div id="win-overlay" class="win-overlay"></div>
-
-<div class="settings-control">
-    <div id="settings-options" class="settings-options">
-        <div class="setting-item" onclick="toggleMusic()">
-            <span id="music-status-icon">🔇</span>
-            <span id="music-status-text">Włącz Muzykę</span>
-        </div>
-    </div>
-    
-    <div class="settings-icon" onclick="toggleSettingsMenu()">
-        ⚙️
-    </div>
-</div>
-
-<div id="token-modal" class="modal">
-    <div class="modal-content">
-        <span class="close-btn" onclick="closeTokenModal()">&times;</span>
-        <h3>💰 Wymień $777 Tokeny</h3>
-        <p style="color:#aaa; font-size:0.9rem;">Wybierz pakiet (symulacja)</p>
-        
-        <div class="token-option" onclick="buyTokens(1000)">
-            Pakiet Srebrny: <span>1000 $777</span>
-        </div>
-        <div class="token-option" onclick="buyTokens(5000)">
-            Pakiet Złoty: <span>5000 $777</span>
-        </div>
-        <div class="token-option" onclick="buyTokens(10000)">
-            Pakiet Diamentowy: <span>10000 $777</span>
-        </div>
-        
-        <p style="margin-top:20px; font-size:0.8rem; color:#666;">*To jest symulacja. Nie dokonujesz prawdziwej wymiany.</p>
-    </div>
-</div>
-
-<div class="banner-container">
-    <img src="unnamed (1).jpg" alt="Casino Banner" class="banner-img" onerror="this.src='image_36905f.jpg'">
-</div>
-
-<header>
-    <img src="unnamed.jpg" alt="Pepe" class="avatar-img" onerror="this.src='unnamed.jpg'">
-    
-    <div class="header-text">
-        <h1>777 CASINO</h1>
-        <div class="subtitle">Official $777 Memecoin Playground</div>
-    </div>
-</header>
-
-<div class="container">
-    <div class="wallet-box">
-        <div>TWOJE SALDO</div>
-        <div class="balance-display"><span id="balance">1000</span> $777</div>
-        <button onclick="openTokenModal()" style="background:#334155; color:#fff; border:1px solid #475569; font-size:0.8rem; box-shadow:none;">+ Dobierz Żetony</button>
-    </div>
-
-    <div class="game-section">
-        <div class="game-card">
-            <h2>RULETKA</h2>
-            <div style="margin-bottom:10px; color:#aaa;">Obstaw kolor</div>
-            <input type="number" id="roulette-bet" class="input-bet" placeholder="Kwota" value="100">
-            
-            <div style="display:flex; gap:5px; justify-content:center; width:100%;">
-                <button onclick="spinRoulette('red')" style="background:var(--red); color:white; flex:1;">RED (x2)</button>
-                <button onclick="spinRoulette('black')" style="background:#111; color:white; border:1px solid #555; flex:1;">BLACK (x2)</button>
-                <button onclick="spinRoulette('green')" style="background:var(--green); color:white; flex:1;">GREEN (x14)</button>
-            </div>
-
-            <div class="roulette-container">
-                <div class="indicator"></div>
-                <div class="wheel-css" id="wheel-css">
-                    </div>
-                <div class="wheel-center">💎</div>
-            </div>
-            
-            <div id="roulette-result" class="status-msg"></div>
-        </div>
-
-        <div class="game-card">
-            <h2>BLACKJACK</h2>
-            <div style="margin-bottom:10px; color:#aaa;">Wbij 21, pokonaj Pepe</div>
-            <input type="number" id="bj-bet" class="input-bet" placeholder="Kwota" value="100">
-            
-            <div style="width:100%; text-align:center;">
-                <div class="bj-label">KRUPIER</div>
-                <div id="dealer-area" class="cards-area">
-                    </div>
-
-                <div class="bj-label" style="margin-top:10px;">TY</div>
-                <div id="player-area" class="cards-area">
-                    </div>
-            </div>
-
-            <div id="bj-controls" style="margin-top:20px;">
-                <button onclick="startBlackjack()" style="width:150px;">ROZDAJ</button>
-            </div>
-            <div id="bj-actions" style="display:none; margin-top:20px;">
-                <button onclick="hit()">DOBIERZ</button>
-                <button onclick="stand()" style="background:var(--red); color:white;">STOP</button>
-            </div>
-            <div id="bj-result" class="status-msg"></div>
-        </div>
-    </div>
-</div>
-
-<footer>
-    <p>$777 MEMECOIN CASINO - NO REAL MONEY INVOLVED<br>Created for the Community.</p>
-</footer>
-
-<script>
-    // --- MUZYKA I USTAWIENIA ---
-    const audio = document.getElementById('bg-music');
-    const settingsMenu = document.getElementById('settings-options');
-    const musicStatusIcon = document.getElementById('music-status-icon');
-    const musicStatusText = document.getElementById('music-status-text');
-
-    audio.volume = 0.4;
-
-    document.addEventListener('DOMContentLoaded', () => {
-        audio.play().catch(e => {
-            console.log("Blokada przeglądarki, muzyka czeka na interakcję.");
-            musicStatusIcon.innerText = '🔇';
-            musicStatusText.innerText = 'Włącz Muzykę';
-        });
-        // Ręczne wstawienie startowych kart dla wizualnego efektu
-        document.getElementById('dealer-area').innerHTML = '<div class="playing-card hidden"><div class="card-center">?</div></div><div class="playing-card hidden"><div class="card-center">?</div></div>';
-        document.getElementById('player-area').innerHTML = '<div class="playing-card hidden"><div class="card-center">?</div></div><div class="playing-card hidden"><div class="card-center">?</div></div>';
-    });
-
-    function toggleSettingsMenu() {
-        settingsMenu.classList.toggle('active');
-    }
-
-    function toggleMusic() {
-        if (audio.paused) {
-            audio.play().then(() => {
-                musicStatusIcon.innerText = '🔊';
-                musicStatusText.innerText = 'Wycisz Muzykę';
-            }).catch(e => console.error("Błąd odtwarzania:", e));
-        } else {
-            audio.pause();
-            musicStatusIcon.innerText = '🔇';
-            musicStatusText.innerText = 'Włącz Muzykę';
+        /* --- MUZYKA - KONTROLKI (Prawy Dół) --- */
+        .settings-control {
+            position: fixed; bottom: 20px; right: 20px; z-index: 1000;
         }
-    }
-    
-    audio.addEventListener('playing', () => { musicStatusIcon.innerText = '🔊'; musicStatusText.innerText = 'Wycisz Muzykę'; });
-    audio.addEventListener('pause', () => { musicStatusIcon.innerText = '🔇'; musicStatusText.innerText = 'Włącz Muzykę'; });
-    musicStatusIcon.innerText = '🔇';
-    musicStatusText.innerText = 'Włącz Muzykę';
-
-
-    // --- PORTFEL ---
-    let balance = 1000;
-    if(localStorage.getItem('777balance')) {
-        balance = parseInt(localStorage.getItem('777balance'));
-        document.getElementById('balance').innerText = balance;
-    }
-    function updateBalance(amount) {
-        balance += amount;
-        document.getElementById('balance').innerText = balance;
-        localStorage.setItem('777balance', balance);
-    }
-    
-    function openTokenModal() {
-        document.getElementById('token-modal').classList.add('active');
-    }
-    function closeTokenModal() {
-        document.getElementById('token-modal').classList.remove('active');
-    }
-
-    function buyTokens(amount) {
-        updateBalance(amount);
-        closeTokenModal();
-    }
-
-    // --- ANIMACJA WYGRANEJ ---
-    function triggerWinAnimation() {
-        const overlay = document.getElementById('win-overlay');
-        overlay.classList.add('show');
-        
-        for (let i = 0; i < 50; i++) {
-            const confetti = document.createElement('div');
-            confetti.className = 'confetti';
-            confetti.style.width = `${Math.random() * 8 + 5}px`;
-            confetti.style.height = `${Math.random() * 8 + 5}px`;
-            confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
-            confetti.style.position = 'fixed';
-            confetti.style.left = `${Math.random() * 100}vw`;
-            confetti.style.top = `${-20}px`;
-            confetti.style.opacity = Math.random();
-            confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
-            confetti.style.transition = `transform ${Math.random() * 4 + 2}s linear, top ${Math.random() * 4 + 2}s linear`;
-            
-            setTimeout(() => {
-                confetti.style.top = '100vh';
-                confetti.style.transform += `translateX(${Math.random() * 500 - 250}px) rotate(${Math.random() * 1080}deg)`;
-            }, 10);
-            
-            overlay.appendChild(confetti);
-            
-            setTimeout(() => confetti.remove(), 6000);
-        }
-
-        setTimeout(() => {
-            overlay.classList.remove('show');
-        }, 3000);
-    }
-
-
-    // --- RULETKA LOGIKA ---
-    let isSpinning = false;
-    function spinRoulette(choice) {
-        if(isSpinning) return;
-        
-        const bet = parseInt(document.getElementById('roulette-bet').value);
-        if(isNaN(bet) || bet <= 0 || bet > balance) return alert("Błąd stawki!");
-        
-        updateBalance(-bet);
-        isSpinning = true;
-        document.getElementById('roulette-result').innerText = "Kręcę...";
-        
-        const wheel = document.getElementById('wheel-css');
-        wheel.style.transition = 'none';
-        wheel.style.transform = 'rotate(0deg)';
-        
-        const result = Math.floor(Math.random() * 15); 
-        let color = 'green';
-        if(result >= 1 && result <= 7) color = 'red';
-        else if(result >= 8) color = 'black';
-        
-        const randomSpin = 1800 + Math.floor(Math.random() * 360);
-        
-        setTimeout(() => {
-            wheel.style.transition = 'transform 3s cubic-bezier(0.1, 0.7, 0.1, 1)';
-            wheel.style.transform = `rotate(${randomSpin}deg)`;
-        }, 50);
-
-        setTimeout(() => {
-            let win = 0;
-            if(choice === color) {
-                win = bet * (color === 'green' ? 14 : 2);
-                updateBalance(win);
-                document.getElementById('roulette-result').innerHTML = `<span class="win">WYGRANA: ${win} $777 (${color.toUpperCase()})</span>`;
-                triggerWinAnimation();
-            } else {
-                document.getElementById('roulette-result').innerHTML = `<span class="lose">PRZEGRANA (${color.toUpperCase()})</span>`;
-            }
-            isSpinning = false;
-        }, 3100);
-    }
-
-    // --- BLACKJACK LOGIKA ---
-    let dealerHand = [], playerHand = [], bjBet = 0, bjGameOn = false;
-    const suits = ['♥', '♦', '♣', '♠'];
-    const values = ['2','3','4','5','6','7','8','9','10','J','Q','K','A'];
-
-    function getCard() {
-        const val = values[Math.floor(Math.random() * values.length)];
-        const suit = suits[Math.floor(Math.random() * suits.length)];
-        return { val, suit };
-    }
-
-    // POPRAWIONA: Używa tylko jednego symbolu w rogu i jednego na środku
-    function renderCard(card, isHidden = false) {
-        if(isHidden) return `<div class="playing-card hidden"><div class="card-center">?</div></div>`;
-        
-        let colorClass = (card.suit === '♥' || card.suit === '♦') ? 'red' : 'black';
-        return `
-            <div class="playing-card ${colorClass}">
-                <div class="card-corner">${card.val}<br>${card.suit}</div>
-                <div class="card-center">${card.suit}</div>
-            </div>
-        `;
-    }
-
-    function drawTable(hideDealerSecond) {
-        const dDiv = document.getElementById('dealer-area');
-        const pDiv = document.getElementById('player-area');
-        
-        dDiv.innerHTML = "";
-        dealerHand.forEach((c, i) => {
-            dDiv.innerHTML += renderCard(c, (hideDealerSecond && i === 1));
-        });
-
-        pDiv.innerHTML = "";
-        playerHand.forEach(c => {
-            pDiv.innerHTML += renderCard(c);
-        });
-    }
-
-    function getPoints(hand) {
-        let pts = 0, aces = 0;
-        hand.forEach(c => {
-            if(['J','Q','K'].includes(c.val)) pts += 10;
-            else if(c.val === 'A') { pts += 11; aces++; }
-            else pts += parseInt(c.val);
-        });
-        while(pts > 21 && aces > 0) { pts -= 10; aces--; }
-        return pts;
-    }
-
-    function startBlackjack() {
-        const bet = parseInt(document.getElementById('bj-bet').value);
-        if(isNaN(bet) || bet <= 0 || bet > balance) return alert("Błąd stawki!");
-        
-        updateBalance(-bet);
-        bjBet = bet;
-        bjGameOn = true;
-        
-        document.getElementById('bj-result').innerText = "";
-        document.getElementById('bj-controls').style.display = 'none';
-        document.getElementById('bj-actions').style.display = 'block';
-
-        dealerHand = [getCard(), getCard()];
-        playerHand = [getCard(), getCard()];
-        
-        drawTable(true);
-        
-        if(getPoints(playerHand) === 21) stand();
-    }
-
-    function hit() {
-        if(!bjGameOn) return;
-        playerHand.push(getCard());
-        drawTable(true);
-        if(getPoints(playerHand) > 21) endBj("FURA! Przegrałeś.");
-    }
-
-    function stand() {
-        if(!bjGameOn) return;
-        while(getPoints(dealerHand) < 17) dealerHand.push(getCard());
-        drawTable(false);
-        
-        const p = getPoints(playerHand);
-        const d = getPoints(dealerHand);
-        
-        if(d > 21) endBj("Krupier ma Furę! WYGRYWASZ!", true);
-        else if(p > d) endBj("Masz więcej! WYGRANA!", true);
-        else if(p === d) endBj("REMIS (Zwrot).", false, true);
-        else endBj("Krupier ma więcej. Przegrałeś.");
-    }
-
-    function endBj(msg, win = false, draw = false) {
-        bjGameOn = false;
-        const resDiv = document.getElementById('bj-result');
-        resDiv.innerText = msg;
-        resDiv.className = "status-msg " + (win ? "win" : (draw ? "" : "lose"));
-        
-        if(win) {
-            updateBalance(bjBet * 2);
-            triggerWinAnimation();
-        }
-        if(draw) updateBalance(bjBet);
-
-        document.getElementById('bj-controls').style.display = 'block';
-        document.getElementById('bj-actions').style.display = 'none';
-    }
-</script>
-
-</body>
-</html>
