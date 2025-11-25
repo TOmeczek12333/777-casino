@@ -38,6 +38,11 @@
             z-index: 100;
             background-color: #000; 
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4); 
+            /* Zwiększamy nieco wysokość, by zmieścić elementy */
+            height: 150px; 
+            display: flex; 
+            align-items: center;
+            justify-content: center;
         }
 
         header {
@@ -47,30 +52,33 @@
             background-position: center top;
             background-repeat: no-repeat;
             
-            /* KLUCZOWA ZMIANA: Stała wysokość i czarne paski */
-            height: 120px; 
+            /* KLUCZOWA ZMIANA: Wysokość i czarne paski */
+            width: 100%;
+            height: 100%; 
             border-top: 5px solid black; 
             border-bottom: 5px solid black; 
             position: relative; 
             z-index: 5;
+            display: flex; 
+            justify-content: center;
+            align-items: center; 
         }
 
-        /* Kontener dla logo, napisu i subtytułu - centralnie, ale w stałej pozycji */
+        /* Kontener dla logo, napisu i subtytułu - CENTRALNIE W BANNERZE */
         .header-center {
-            position: absolute;
-            top: 100%; /* Lokalizacja PONIŻEJ bannera */
+            position: absolute; /* Pozycjonowanie wewnątrz nagłówka */
+            top: 50%; /* Wyśrodkowanie w pionie */
             left: 50%;
-            transform: translateX(-50%); 
+            transform: translate(-50%, -10%); /* Korekta dla przesunięcia w dół na wzorze */
             
             display: flex;
             flex-direction: column;
             align-items: center;
             z-index: 20; 
             
-            /* Dajemy mu tło, aby napis był czytelny na styku */
-            background-color: var(--bg-color);
-            padding-bottom: 5px;
-            border-radius: 0 0 10px 10px;
+            /* Usuwamy tło, aby napis był bezpośrednio na bannerze */
+            background-color: transparent; 
+            padding-bottom: 0;
         }
 
         /* AVATAR */
@@ -81,8 +89,8 @@
             border: 4px solid var(--green-frog); 
             box-shadow: 0 0 15px rgba(34, 197, 94, 0.8); 
             object-fit: cover;
-            /* KLUCZOWA ZMIANA: Wychodzi z bannera w górę (pozycja stała) */
-            margin-top: -35px; 
+            /* KLUCZOWA ZMIANA: Usuwamy ujemny margines, bo element jest już w środku */
+            margin-top: 0; 
         }
 
         /* NEONOWY NAPIS */
@@ -105,11 +113,9 @@
             text-shadow: 0 0 3px #000;
         }
 
-        /* Dodatkowy obszar pod logo, aby gra zaczynała się niżej */
+        /* Usuwamy ten element, bo pozycjonowanie w .sticky-header go zastępuje */
         .header-spacer {
-            height: 80px; /* Dodatkowa przestrzeń na logo i napis */
-            background-color: var(--bg-color);
-            border-bottom: 1px solid #333;
+            display: none; 
         }
         
         .container { max-width: 1200px; margin: 20px auto; padding: 0 20px; } 
@@ -140,13 +146,13 @@
             color:#fff !important; 
             border:1px solid #475569 !important; 
             box-shadow:none !important; 
-            font-size: 0.85rem !important; /* Mniejsza czcionka, jak na screenach */
+            font-size: 0.85rem !important; 
             padding: 8px 15px !important;
         }
         
         /* --- IKONA USTAWIEŃ (koło zębate) --- */
         .settings-control {
-            position: fixed; /* KLUCZOWA ZMIANA: FIX, aby się nie bugowała */
+            position: fixed; /* FIX: Zapobiega bugowaniu się */
             bottom: 20px;
             right: 20px;
             z-index: 200;
@@ -190,7 +196,6 @@
         .roulette-btn-red { background: var(--roulette-red) !important; color: white !important; box-shadow: 0 4px 0 #992d2d !important; }
         .roulette-btn-black { background: #111 !important; color: white !important; border: 1px solid #555 !important; box-shadow: 0 4px 0 #000 !important; }
         .roulette-btn-green { background: var(--roulette-green) !important; color: white !important; box-shadow: 0 4px 0 #0f7647 !important; }
-        /* reszta stylów gry */
         .game-section { display: grid; grid-template-columns: 1fr; gap: 20px; }
         @media(min-width: 768px) { .game-section { grid-template-columns: 1fr 1fr; } }
         @media(min-width: 1000px) { .game-section { grid-template-columns: 1fr 1fr 1fr; } } 
@@ -269,16 +274,15 @@
 </div>
 <div class="sticky-header" id="sticky-header">
     <header>
-        </header>
-</div>
-
-<div class="header-center">
-    <img src="unnamed.jpg" alt="Pepe Casino" class="avatar-img" onerror="this.src='avatar.jpg'">
-    
-    <div class="header-text">
-        <h1>777 CASINO</h1>
-        <div class="subtitle">Official $777 Memecoin Playground</div>
-    </div>
+        <div class="header-center">
+            <img src="unnamed.jpg" alt="Pepe Casino" class="avatar-img" onerror="this.src='avatar.jpg'">
+            
+            <div class="header-text">
+                <h1>777 CASINO</h1>
+                <div class="subtitle">Official $777 Memecoin Playground</div>
+            </div>
+        </div>
+    </header>
 </div>
 <div class="header-spacer"></div> 
 <div class="container">
