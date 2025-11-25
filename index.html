@@ -31,14 +31,13 @@
             text-align: center;
         }
         
-        /* --- STICKY HEADER Z BANNEREM I LOGO --- */
+        /* --- STICKY HEADER Z BANNEREM I LOGO (STABILNA WERSJA) --- */
         .sticky-header {
             position: sticky;
             top: 0;
             z-index: 100;
             background-color: #000; 
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4); 
-            /* Zwiększamy nieco wysokość, by zmieścić elementy */
             height: 150px; 
             display: flex; 
             align-items: center;
@@ -52,7 +51,6 @@
             background-position: center top;
             background-repeat: no-repeat;
             
-            /* KLUCZOWA ZMIANA: Wysokość i czarne paski */
             width: 100%;
             height: 100%; 
             border-top: 5px solid black; 
@@ -66,17 +64,16 @@
 
         /* Kontener dla logo, napisu i subtytułu - CENTRALNIE W BANNERZE */
         .header-center {
-            position: absolute; /* Pozycjonowanie wewnątrz nagłówka */
-            top: 50%; /* Wyśrodkowanie w pionie */
+            position: absolute; 
+            top: 50%; 
             left: 50%;
-            transform: translate(-50%, -10%); /* Korekta dla przesunięcia w dół na wzorze */
+            transform: translate(-50%, -10%); 
             
             display: flex;
             flex-direction: column;
             align-items: center;
             z-index: 20; 
             
-            /* Usuwamy tło, aby napis był bezpośrednio na bannerze */
             background-color: transparent; 
             padding-bottom: 0;
         }
@@ -89,7 +86,6 @@
             border: 4px solid var(--green-frog); 
             box-shadow: 0 0 15px rgba(34, 197, 94, 0.8); 
             object-fit: cover;
-            /* KLUCZOWA ZMIANA: Usuwamy ujemny margines, bo element jest już w środku */
             margin-top: 0; 
         }
 
@@ -113,14 +109,7 @@
             text-shadow: 0 0 3px #000;
         }
 
-        /* Usuwamy ten element, bo pozycjonowanie w .sticky-header go zastępuje */
-        .header-spacer {
-            display: none; 
-        }
-        
-        .container { max-width: 1200px; margin: 20px auto; padding: 0 20px; } 
-
-        /* --- WALLET (Dostosowanie przycisku) --- */
+        /* --- WALLET --- */
         .wallet-box {
             background: linear-gradient(180deg, #1e293b, #0f172a); 
             padding: 20px;
@@ -150,9 +139,9 @@
             padding: 8px 15px !important;
         }
         
-        /* --- IKONA USTAWIEŃ (koło zębate) --- */
+        /* --- IKONA USTAWIEŃ (koło zębate - FIX) --- */
         .settings-control {
-            position: fixed; /* FIX: Zapobiega bugowaniu się */
+            position: fixed; 
             bottom: 20px;
             right: 20px;
             z-index: 200;
@@ -192,7 +181,7 @@
         .setting-item:hover { background-color: #334155; }
         .setting-item span { margin-right: 5px; }
 
-        /* --- STYLY GRY (Pozostałe - OK) --- */
+        /* --- STYLY GRY --- */
         .roulette-btn-red { background: var(--roulette-red) !important; color: white !important; box-shadow: 0 4px 0 #992d2d !important; }
         .roulette-btn-black { background: #111 !important; color: white !important; border: 1px solid #555 !important; box-shadow: 0 4px 0 #000 !important; }
         .roulette-btn-green { background: var(--roulette-green) !important; color: white !important; box-shadow: 0 4px 0 #0f7647 !important; }
@@ -208,7 +197,9 @@
 
         .roulette-container { width: 200px; height: 200px; position: relative; margin: 20px auto; border-radius: 50%; overflow: hidden; border: 8px solid var(--green-frog); box-shadow: 0 0 20px rgba(34, 197, 94, 0.3); }
         .wheel-css { width: 100%; height: 100%; position: absolute; top: 0; left: 0; transform-origin: center; transition: transform 4s cubic-bezier(0.1, 0.7, 0.1, 1); }
-        .wheel-css::before { content: ""; position: absolute; top: -5%; left: -5%; width: 110%; height: 110%; border-radius: 50%; background: conic-gradient(
+        /* Definicja paska ruletki (Green-Red-Black) */
+        .wheel-css::before { content: ""; position: absolute; top: -5%; left: -5%; width: 110%; height: 110%; border-radius: 50%; 
+        background: conic-gradient(
             var(--roulette-green) 0% 6.66%, var(--roulette-red) 6.66% 13.32%, black 13.32% 20%, var(--roulette-red) 20% 26.66%, black 26.66% 33.32%,
             var(--roulette-red) 33.32% 40%, black 40% 46.66%, var(--roulette-red) 46.66% 53.32%, black 53.32% 60%, 
             var(--roulette-red) 60% 66.66%, black 66.66% 73.32%, var(--roulette-red) 73.32% 80%, black 80% 86.66%, 
@@ -218,10 +209,10 @@
         .indicator { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 10px solid transparent; border-right: 10px solid transparent; border-top: 25px solid var(--neon-color); z-index: 11; }
 
         .cards-area { min-height: 100px; display: flex; justify-content: center; align-items: center; gap: 5px; }
-        .playing-card { background: white; border-radius: 6px; width: 60px; height: 90px; margin: 0 2px; position: relative; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); display: flex; flex-direction: column; justify-content: space-between; align-items: center; }
+        .playing-card { background: white; border-radius: 6px; width: 60px; height: 90px; margin: 0 2px; position: relative; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); display: flex; flex-direction: column; justify-content: space-between; align-items: center; padding: 5px; }
         .playing-card.red { color: red; }
         .playing-card.black { color: black; }
-        .card-center { font-size: 2.5rem; font-weight: bold; line-height: 1; }
+        .card-center { font-size: 2rem; font-weight: bold; line-height: 1; } /* Zmniejszony rozmiar czcionki */
         .card-corner { font-size: 0.8rem; position: absolute; top: 5px; left: 5px; line-height: 1; }
         .playing-card.hidden { background: repeating-linear-gradient(45deg, #10b981, #10b981 8px, #34d399 8px, #34d399 16px); color: transparent; border: 2px solid #fff; }
         .bj-label { font-size: 0.8rem; color: #888; margin-bottom: 5px; }
@@ -284,7 +275,6 @@
         </div>
     </header>
 </div>
-<div class="header-spacer"></div> 
 <div class="container">
     <div class="wallet-box">
         <div>TWOJE SALDO</div>
@@ -359,7 +349,7 @@
 </footer>
 
 <script>
-    // --- SKRYPTY GRY (Bez zmian) ---
+    // --- SKRYPTY GRY ---
     const audio = document.getElementById('bg-music');
     const settingsMenu = document.getElementById('settings-options');
     const musicStatusIcon = document.getElementById('music-status-icon');
@@ -372,8 +362,9 @@
             musicStatusIcon.innerText = '🔇';
             musicStatusText.innerText = 'Włącz Muzykę';
         });
-        document.getElementById('dealer-area').innerHTML = '<div class="playing-card hidden"><div class="card-center">?</div></div><div class="playing-card hidden"><div class="card-center">?</div></div>';
-        document.getElementById('player-area').innerHTML = '<div class="playing-card hidden"><div class="card-center">?</div></div><div class="playing-card hidden"><div class="card-center">?</div></div>';
+        // Inicjalizacja pustych kart (bez bugujących cyfr)
+        document.getElementById('dealer-area').innerHTML = '<div class="playing-card hidden"></div><div class="playing-card hidden"></div>';
+        document.getElementById('player-area').innerHTML = '<div class="playing-card hidden"></div><div class="playing-card hidden"></div>';
     });
 
     function toggleSettingsMenu() { settingsMenu.classList.toggle('active'); }
@@ -424,8 +415,7 @@
         setTimeout(() => { overlay.classList.remove('show'); }, 3000);
     }
 
-    // LOGIKA GRY (Bez zmian)
-
+    // LOGIKA SLOTS (Bez zmian)
     const symbols = ['🍒', '🍋', '7️⃣'];
     let isSlotsSpinning = false;
     function getRandomSymbol() { return symbols[Math.floor(Math.random() * symbols.length)]; }
@@ -476,7 +466,20 @@
         }, 4600); 
     }
 
+    // LOGIKA ROULETTE (POPRAWIONA)
     let isRouletteSpinning = false;
+    // Mapowanie kolorów na sektor (0 to Green, reszta: 1-7 Red, 8-14 Black)
+    const sectors = [
+        { color: 'green', angle: 0 }, 
+        { color: 'red', angle: 24 }, { color: 'black', angle: 48 },
+        { color: 'red', angle: 72 }, { color: 'black', angle: 96 },
+        { color: 'red', angle: 120 }, { color: 'black', angle: 144 },
+        { color: 'red', angle: 168 }, { color: 'black', angle: 192 },
+        { color: 'red', angle: 216 }, { color: 'black', angle: 240 },
+        { color: 'red', angle: 264 }, { color: 'black', angle: 288 },
+        { color: 'red', angle: 312 }, { color: 'black', angle: 336 }
+    ];
+
     function spinRoulette(choice) {
         if(isRouletteSpinning) return;
         const bet = parseInt(document.getElementById('roulette-bet').value);
@@ -487,53 +490,71 @@
         const wheel = document.getElementById('wheel-css');
         wheel.style.transition = 'none';
         wheel.style.transform = 'rotate(0deg)';
-        const result = Math.floor(Math.random() * 15); 
-        let color = 'green'; 
-        if(result >= 1 && result <= 7) color = 'red'; 
-        else if(result >= 8) color = 'black'; 
-        let centerAngle = 0;
-        if (result === 0) { centerAngle = 348; } 
-        else if (result >= 1 && result <= 7) { let sectorIndex = (result - 1) * 2; centerAngle = sectorIndex * 24 + 12; } 
-        else if (result >= 8) { let sectorIndex = (result - 8) * 2 + 1; centerAngle = sectorIndex * 24 + 12; }
+        
+        // Losujemy index sektora (0 do 14)
+        const sectorIndex = Math.floor(Math.random() * sectors.length); 
+        const resultColor = sectors[sectorIndex].color;
+        
+        // Kąt do obrotu (centerAngle to środek danego sektora)
+        const centerAngle = sectors[sectorIndex].angle + 12; // 12 to połowa sektora (24/2)
         const fullSpins = 6; 
         const randomOffset = Math.random() * 10 - 5; 
         const finalSpin = fullSpins * 360 - centerAngle + randomOffset;
+
         setTimeout(() => {
             wheel.style.transition = 'transform 3s cubic-bezier(0.1, 0.7, 0.1, 1)';
             wheel.style.transform = `rotate(${finalSpin}deg)`;
         }, 50);
+
         setTimeout(() => {
             let win = 0;
-            if(choice === color) {
-                win = bet * (color === 'green' ? 14 : 2);
+            if(choice === resultColor) {
+                win = bet * (resultColor === 'green' ? 14 : 2);
                 updateBalance(win);
-                document.getElementById('roulette-result').innerHTML = `<span class="win">WYGRANA: ${win} $777 (${color.toUpperCase()})</span>`;
+                document.getElementById('roulette-result').innerHTML = `<span class="win">WYGRANA: ${win} $777 (${resultColor.toUpperCase()})</span>`;
                 triggerWinAnimation();
-            } else { document.getElementById('roulette-result').innerHTML = `<span class="lose">PRZEGRANA (${color.toUpperCase()})</span>`; }
+            } else { 
+                document.getElementById('roulette-result').innerHTML = `<span class="lose">PRZEGRANA (${resultColor.toUpperCase()})</span>`; 
+            }
             isRouletteSpinning = false;
         }, 3100);
     }
     
+    // LOGIKA BLACKJACKA (POPRAWIONA FUNKCJA RENDEROWANIA)
     let dealerHand = [], playerHand = [], bjBet = 0, bjGameOn = false;
     const suits = ['♥', '♦', '♣', '♠'];
     const values = ['2','3','4','5','6','7','8','9','10','J','Q','K','A'];
+    
+    // Konwersja J, Q, K, A na symbole Unicode dla czcionki
+    function getCardSymbol(val) {
+        if (val === 'J') return 'J'; 
+        if (val === 'Q') return 'Q';
+        if (val === 'K') return 'K';
+        if (val === 'A') return 'A';
+        return val;
+    }
+
     function getCard() {
         const val = values[Math.floor(Math.random() * values.length)];
         const suit = suits[Math.floor(Math.random() * suits.length)];
         return { val, suit };
     }
+
+    // NAPRAWIONA FUNKCJA RENDEROWANIA KARTY
     function renderCard(card, isHidden = false) {
-        if(isHidden) return `<div class="playing-card hidden"><div class="card-center">?</div></div>`;
+        if(isHidden) return `<div class="playing-card hidden"></div>`; 
+        
         let colorClass = (card.suit === '♥' || card.suit === '♦') ? 'red' : 'black';
-        const centerContent = card.val;
-        const cornerContent = `${card.val}<br>${card.suit}`;
+        const displayVal = getCardSymbol(card.val);
+
         return `
             <div class="playing-card ${colorClass}">
-                <div class="card-corner">${cornerContent}</div>
-                <div class="card-center">${centerContent}</div>
+                <div class="card-corner">${displayVal}<br>${card.suit}</div>
+                <div class="card-center">${displayVal}</div>
             </div>
         `;
     }
+
     function drawTable(hideDealerSecond) {
         const dDiv = document.getElementById('dealer-area');
         const pDiv = document.getElementById('player-area');
