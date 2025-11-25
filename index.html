@@ -24,16 +24,15 @@
             text-align: center;
         }
 
-        /* --- BANER i NAGŁÓWEK (Poprawione skalowanie obrazów) --- */
+        /* --- BANER i NAGŁÓWEK --- */
         .banner-container {
             width: 100%; 
-            height: 200px; /* Zmniejszona wysokość, aby lepiej pasowała */
+            height: 200px; 
             border-bottom: 4px solid var(--gold);
             background-color: #000; overflow: hidden; position: relative;
             display: flex; justify-content: center; align-items: center;
         }
         .banner-img {
-            /* Zapewniamy, że obraz zajmuje całą dostępną przestrzeń i jest obcięty, a nie rozciągnięty */
             width: 100%; 
             height: 100%; 
             object-fit: cover; 
@@ -65,17 +64,19 @@
         }
         .balance-display { font-size: 2rem; font-weight: bold; color: var(--green); margin: 10px 0; text-shadow: 0 0 10px rgba(34, 197, 94, 0.3); }
 
-        /* --- GRY LAYOUT (Poprawiony) --- */
+        /* --- GRY LAYOUT --- */
         .game-section { display: grid; grid-template-columns: 1fr; gap: 20px; }
-        /* 2 kolumny na tabletach */
         @media(min-width: 768px) { .game-section { grid-template-columns: 1fr 1fr; } }
-        /* 3 kolumny na dużych desktopach, aby pomieścić sloty, ruletkę i blackjacka */
         @media(min-width: 1000px) { .game-section { grid-template-columns: 1fr 1fr 1fr; } } 
 
         .game-card {
             background-color: var(--card-bg); padding: 20px; border-radius: 12px;
-            border: 1px solid #334155; display: flex; flex-direction: column;
+            border: 1px solid #334155; 
+            /* Użycie flexbox wewnątrz karty, aby wszystko było wyśrodkowane pionowo */
+            display: flex; 
+            flex-direction: column;
             align-items: center;
+            text-align: center; /* Zapewnia centrowanie treści wewnątrz karty */
         }
 
         h2 { color: var(--gold); margin-top: 0; letter-spacing: 1px; border-bottom: 1px solid #333; width: 100%; padding-bottom: 10px; margin-bottom: 15px;}
@@ -99,9 +100,9 @@
         .win { color: var(--green); text-shadow: 0 0 10px rgba(34, 197, 94, 0.5); }
         .lose { color: var(--red); }
 
-        /* --- SLOTY CSS (Bez zmian) --- */
+        /* --- SLOTY CSS --- */
         .slot-machine {
-            display: flex; justify-content: center; gap: 5px; margin: 20px 0;
+            display: flex; justify-content: center; gap: 5px; margin: 20px auto; /* auto dla centrowania */
             background: #000; padding: 10px; border-radius: 8px; border: 3px solid #64748b;
         }
 
@@ -126,10 +127,11 @@
         .slot-payouts span { float: right; color: var(--green); font-weight: bold; }
 
 
-        /* --- RULETKA CSS (Bez zmian) --- */
+        /* --- RULETKA CSS --- */
         .roulette-container {
+            /* Kontener jest już dobrze wyśrodkowany, ale dodajmy centrowanie w karcie dla pewności */
             position: relative; width: 200px; height: 200px; 
-            margin: 20px auto 0 auto; 
+            margin: 20px auto 0 auto; /* Użycie auto dla pewności centrowania */
             display: flex; justify-content: center; align-items: center;
         }
         .wheel-css {
@@ -150,37 +152,39 @@
             border-top: 25px solid white; z-index: 5; filter: drop-shadow(0 2px 2px rgba(0,0,0,0.5));
         }
 
-        /* --- BLACKJACK CSS (Poprawione) --- */
+        /* --- BLACKJACK CSS --- */
         .cards-area { 
             display: flex; 
             justify-content: center; 
-            gap: 5px; /* Mniejszy odstęp między kartami */
+            gap: 5px; 
             min-height: 100px;
             margin: 10px 0; 
             flex-wrap: wrap; 
         }
         .playing-card {
-            width: 50px; /* Zmniejszona szerokość karty */
-            height: 75px; /* Zmniejszona wysokość karty (proporcja 2:3) */
-            background-color: white; border-radius: 6px; /* Lekko mniejszy promień */
+            width: 50px; 
+            height: 75px; 
+            background-color: white; border-radius: 6px; 
             color: black; font-family: 'Courier New', monospace; font-weight: bold;
             display: flex; flex-direction: column; 
-            padding: 3px; /* Mniejszy padding */
+            padding: 3px; 
             box-shadow: 1px 1px 3px rgba(0,0,0,0.3); position: relative;
         }
         .playing-card.red { color: #d00; }
         .playing-card.hidden { 
-            background: repeating-linear-gradient(45deg, #b45309, #b45309 8px, #fbbf24 8px, #fbbf24 16px); /* Dostosowane tło */
+            background: repeating-linear-gradient(45deg, #b45309, #b45309 8px, #fbbf24 8px, #fbbf24 16px);
             color: transparent; border: 2px solid #fff; 
         }
         .card-corner { 
             line-height: 1; 
-            font-size: 0.8rem; /* Mniejsza czcionka w rogu */
+            font-size: 0.8rem; 
             position: absolute; top: 3px; left: 3px; 
         }
         .card-center { 
             position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); 
-            font-size: 2.2rem; /* Mniejszy symbol na środku */
+            font-size: 2.2rem; 
+            /* Dodatkowa klasa do centrowania liter (J, Q, K, A) */
+            line-height: 1; 
         }
         .card-bottom { display: none; } 
         .bj-label { color: #aaa; margin-top: 5px; font-size: 0.9rem;}
@@ -282,11 +286,11 @@
 </div>
 
 <div class="banner-container">
-    <img src="unnamed (1).jpg" alt="Casino Banner" class="banner-img" onerror="this.src='unnamed (1).jpg'">
+    <img src="banner.jpg" alt="Casino Banner" class="banner-img" onerror="this.src='banner.jpg'">
 </div>
 
 <header>
-    <img src="unnamed.jpg" alt="Pepe" class="avatar-img" onerror="this.src='unnamed.jpg'">
+    <img src="avatar.jpg" alt="Pepe" class="avatar-img" onerror="this.src='avatar.jpg'">
     
     <div class="header-text">
         <h1>777 CASINO</h1>
@@ -623,10 +627,18 @@
         if(isHidden) return `<div class="playing-card hidden"><div class="card-center">?</div></div>`;
         
         let colorClass = (card.suit === '♥' || card.suit === '♦') ? 'red' : 'black';
+        
+        // Logika wyświetlania: jeśli J, Q, K lub A, na środku ma być litera,
+        // w przeciwnym razie ma być symbol koloru.
+        let centerContent = card.suit;
+        if (['J', 'Q', 'K', 'A'].includes(card.val)) {
+            centerContent = card.val;
+        }
+
         return `
             <div class="playing-card ${colorClass}">
                 <div class="card-corner">${card.val}<br>${card.suit}</div>
-                <div class="card-center">${card.suit}</div>
+                <div class="card-center">${centerContent}</div>
             </div>
         `;
     }
