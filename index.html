@@ -9,13 +9,17 @@
         :root {
             --bg-color: #0f172a;
             --card-bg: #1e293b;
-            --green-frog: #22c55e; /* Standardowa zieleń do ramek/akcentów */
+            --green-frog: #22c55e; 
             --red: #ef4444;
             --text: #f8fafc;
             
             /* KOLORY NEONU (INTENSYWNA ZIELEŃ) */
             --neon-color: #00ff00; 
             --neon-shadow: 0 0 5px var(--neon-color), 0 0 10px var(--neon-color), 0 0 20px #fff, 0 0 30px var(--neon-color);
+            
+            /* Akcent dla przycisku RED i GREEN (jak na screenach) */
+            --roulette-red: #ff3333;
+            --roulette-green: #33cc33;
         }
 
         body {
@@ -26,113 +30,100 @@
             padding: 0;
             text-align: center;
         }
-
-        /* --- STICKY HEADER Z BANNEREM I NEONEM --- */
+        
+        /* --- STICKY HEADER Z BANNEREM I CENTRALNYM LOGO --- */
         .sticky-header {
             position: sticky;
             top: 0;
             z-index: 100;
-            background-color: var(--bg-color); 
+            background-color: #000; /* Tło pod bannerem */
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4); 
-            /* Dodajemy ciemną ramkę pod bannerem */
-            border-bottom: 5px solid #000;
         }
 
         header {
-            /* KLUCZOWA ZMIANA: Dodanie tła z Twojego obrazka */
+            /* Banner tła z Twojego obrazka */
             background-image: url('unnamed (1).jpg'); 
             background-size: cover; 
             background-position: center top;
             background-repeat: no-repeat;
             
-            padding-bottom: 10px; 
-            border-bottom: 4px solid var(--green-frog); /* ZIELONA RAMKA POD BANNEREM */
-            
-            /* Ustawienie wysokości, by banner był widoczny */
-            height: 140px; 
-            
-            display: flex; 
-            flex-direction: column; 
-            align-items: center;
-            justify-content: flex-end; /* Elementy na dole bannera */
+            /* KLUCZOWA ZMIANA: Wysokość i czarne paski */
+            height: 120px; 
+            border-top: 5px solid black; 
+            border-bottom: 5px solid black; 
             position: relative; 
             z-index: 5;
-            
-            /* Ciemny gradient na dole, by poprawić czytelność tekstu */
-            box-shadow: inset 0 -40px 40px -20px #000;
         }
 
-        /* Sekcja poniżej Bannera, zawierająca tylko Awatar i Tekst */
-        .header-content {
+        /* Kontener dla logo, napisu i subtytułu - centralnie */
+        .header-center {
+            position: absolute;
+            top: 100%; /* Zaczyna się tuż pod bannerem */
+            left: 50%;
+            transform: translate(-50%, -50%); /* Wyrównanie w pionie i poziomie */
+            
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            position: absolute; /* Nad bannerem */
-            bottom: 0; /* Zaczyna się od dołu bannera */
-            padding-bottom: 5px;
-            width: 100%;
-            height: auto;
-            background: linear-gradient(to top, #000000a0 0%, #00000020 70%, transparent 100%);
+            z-index: 20; /* Najwyższa warstwa */
         }
-
 
         /* AVATAR */
         .avatar-img {
-            width: 60px; 
-            height: 60px; 
+            width: 70px; /* Nieco większy niż w poprzedniej próbie */
+            height: 70px; 
             border-radius: 50%; 
-            border: 3px solid var(--green-frog); 
+            border: 4px solid var(--green-frog); 
             box-shadow: 0 0 15px rgba(34, 197, 94, 0.8); 
             object-fit: cover;
-            /* Umieszczamy awatar na granicy bannera/tła */
-            position: absolute;
-            top: 110px; /* Połowa jego wysokości wychodzi z bannera */
-            z-index: 10;
+            /* KLUCZOWA ZMIANA: Przesunięcie w górę, aby był na styku bannera i tła */
+            margin-top: -35px; /* Połowa jego wysokości wychodzi z bannera w górę */
         }
 
-        /* NEONOWY NAPIS - ZIELONY */
+        /* NEONOWY NAPIS - Mniejszy, mniej miejsca zajmuje */
         h1 { 
-            margin: 0; 
+            margin: 5px 0 0 0; /* Mniejszy margines góra/dół */
             font-family: 'Arial Black', sans-serif;
-            font-size: 2.5rem; 
+            font-size: 1.5rem; /* Zmniejszony rozmiar */
             text-transform: uppercase; 
-            letter-spacing: 5px; 
-            text-shadow: var(--neon-shadow); 
+            letter-spacing: 4px; 
+            text-shadow: 0 0 5px #000, 0 0 10px #000, var(--neon-shadow); /* Mniejszy neon, aby nie zasłaniał */
             color: var(--neon-color);
             line-height: 1;
-            margin-top: 35px; /* ODSTĘP OD AWATARA */
         }
         
         .subtitle { 
             color: #ccc; 
-            font-size: 0.8rem; 
-            margin-top: 5px; 
+            font-size: 0.7rem; 
+            margin-top: 3px; 
             letter-spacing: 1px;
             text-shadow: 0 0 3px #000;
-            margin-bottom: 10px;
+        }
+
+        /* Wymuszenie czarnego paska pod centralnym elementem, tak jak na screenach */
+        .header-spacer {
+            height: 40px; 
+            background-color: var(--bg-color);
+            border-bottom: 1px solid #333;
         }
         
-        /* Styl dla obszaru pod bannerem */
-        .header-text-area {
-            background-color: var(--bg-color);
-            padding-top: 50px; /* Daje miejsce na awatar i napis */
-            border-bottom: 1px solid #333;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-        }
-
         .container { max-width: 1200px; margin: 20px auto; padding: 0 20px; } 
 
-        /* --- STYLY GRY (Pozostawione bez zmian, używają zmiennych) --- */
+        /* --- WALLET --- */
         .wallet-box {
-            background: linear-gradient(180deg, #1e293b, #0f172a); padding: 20px;
-            border-radius: 15px; margin-bottom: 30px; border: 1px solid var(--green-frog); 
+            background: linear-gradient(180deg, #1e293b, #0f172a); 
+            padding: 20px;
+            border-radius: 15px; 
+            margin-bottom: 30px; 
+            border: 1px solid var(--green-frog); 
             box-shadow: 0 0 20px rgba(34, 197, 94, 0.15); 
+            margin-top: 20px; /* Odstęp od nagłówka */
         }
         .balance-display { font-size: 2rem; font-weight: bold; color: var(--neon-color); margin: 10px 0; text-shadow: 0 0 10px rgba(0, 255, 0, 0.3); } 
 
+        /* --- PRZYCISKI I AKCENTY --- */
         h2 { color: var(--green-frog); margin-top: 0; letter-spacing: 1px; border-bottom: 1px solid #333; width: 100%; padding-bottom: 10px; margin-bottom: 15px;}
+
         button {
             background-color: var(--green-frog); 
             color: #000; border: none; padding: 10px 20px;
@@ -142,8 +133,12 @@
         button:active { transform: translateY(4px); box-shadow: none; }
         .wallet-box button { background:#334155 !important; color:#fff !important; border:1px solid #475569 !important; box-shadow:none !important; }
         
-        /* Reszta CSS dla gier... (pomijam, bo jest poprawna) */
-        
+        /* KLUCZOWA ZMIANA: Przyciski ruletki z poprawnymi kolorami */
+        .roulette-btn-red { background: var(--roulette-red) !important; color: white !important; box-shadow: 0 4px 0 #992d2d !important; }
+        .roulette-btn-black { background: #111 !important; color: white !important; border: 1px solid #555 !important; box-shadow: 0 4px 0 #000 !important; }
+        .roulette-btn-green { background: var(--roulette-green) !important; color: white !important; box-shadow: 0 4px 0 #0f7647 !important; }
+
+        /* --- STYLY GRY (Ruletka/Blackjack - Bez zmian) --- */
         .game-section { display: grid; grid-template-columns: 1fr; gap: 20px; }
         @media(min-width: 768px) { .game-section { grid-template-columns: 1fr 1fr; } }
         @media(min-width: 1000px) { .game-section { grid-template-columns: 1fr 1fr 1fr; } } 
@@ -155,6 +150,12 @@
         .playing-card.hidden { background: repeating-linear-gradient(45deg, #10b981, #10b981 8px, #34d399 8px, #34d399 16px); color: transparent; border: 2px solid #fff; }
         .settings-icon { color: var(--green-frog); border: 2px solid var(--green-frog); box-shadow: 0 0 15px rgba(34, 197, 94, 0.5); } 
         .modal-content { border: 2px solid var(--green-frog); }
+        .cards-area { min-height: 100px; display: flex; justify-content: center; align-items: center; gap: 5px; }
+        .playing-card { background: white; border-radius: 6px; width: 60px; height: 90px; margin: 0 2px; position: relative; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); display: flex; flex-direction: column; justify-content: space-between; align-items: center; }
+        .playing-card.red { color: red; }
+        .playing-card.black { color: black; }
+        .card-center { font-size: 2.5rem; font-weight: bold; line-height: 1; }
+        .card-corner { font-size: 0.8rem; position: absolute; top: 5px; left: 5px; line-height: 1; }
 
     </style>
 </head>
@@ -188,7 +189,7 @@
         </header>
 </div>
 
-<div class="header-text-area">
+<div class="header-center">
     <img src="unnamed.jpg" alt="Pepe Casino" class="avatar-img" onerror="this.src='avatar.jpg'">
     
     <div class="header-text">
@@ -196,6 +197,7 @@
         <div class="subtitle">Official $777 Memecoin Playground</div>
     </div>
 </div>
+<div class="header-spacer"></div> 
 <div class="container">
     <div class="wallet-box">
         <div>TWOJE SALDO</div>
@@ -228,9 +230,9 @@
             <div style="margin-bottom:10px; color:#aaa;">Obstaw kolor</div>
             <input type="number" id="roulette-bet" class="input-bet" placeholder="Kwota" value="100">
             <div style="display:flex; gap:5px; justify-content:center; width:100%;">
-                <button onclick="spinRoulette('red')" style="background:var(--red); color:white; flex:1; box-shadow: 0 4px 0 #992d2d;">RED (x2)</button>
-                <button onclick="spinRoulette('black')" style="background:#111; color:white; border:1px solid #555; flex:1; box-shadow: 0 4px 0 #000;">BLACK (x2)</button>
-                <button onclick="spinRoulette('green')" style="background:var(--green-frog); color:white; flex:1; box-shadow: 0 4px 0 #0f7647;">GREEN (x14)</button>
+                <button onclick="spinRoulette('red')" class="roulette-btn-red">RED (x2)</button>
+                <button onclick="spinRoulette('black')" class="roulette-btn-black">BLACK (x2)</button>
+                <button onclick="spinRoulette('green')" class="roulette-btn-green">GREEN (x14)</button>
             </div>
 
             <div class="roulette-container">
@@ -258,7 +260,7 @@
             </div>
             <div id="bj-actions" style="display:none; margin-top:20px;">
                 <button onclick="hit()">DOBIERZ</button>
-                <button onclick="stand()" style="background:var(--red); color:white; box-shadow: 0 4px 0 #992d2d;">STOP</button>
+                <button onclick="stand()" class="roulette-btn-red">STOP</button>
             </div>
             <div id="bj-result" class="status-msg"></div>
         </div>
@@ -309,7 +311,7 @@
     function closeTokenModal() { document.getElementById('token-modal').classList.remove('active'); }
     function buyTokens(amount) { updateBalance(amount); closeTokenModal(); }
 
-    // ANIMACJA WYGRANEJ (pomijam kod, jest poprawny)
+    // ANIMACJA WYGRANEJ
     function triggerWinAnimation() {
         const overlay = document.getElementById('win-overlay');
         overlay.classList.add('show');
@@ -335,9 +337,8 @@
         setTimeout(() => { overlay.classList.remove('show'); }, 3000);
     }
 
-    // LOGIKA GRY (pomijam kod Slotów, Ruletki, Blackjacka, bo jest poprawny)
+    // LOGIKA GRY (pozostawiona poprawna)
 
-    // === LOGIKA SLOTÓW ===
     const symbols = ['🍒', '🍋', '7️⃣'];
     let isSlotsSpinning = false;
     function getRandomSymbol() { return symbols[Math.floor(Math.random() * symbols.length)]; }
@@ -388,7 +389,6 @@
         }, 4600); 
     }
 
-    // === LOGIKA RULETKI ===
     let isRouletteSpinning = false;
     function spinRoulette(choice) {
         if(isRouletteSpinning) return;
@@ -426,8 +426,7 @@
             isRouletteSpinning = false;
         }, 3100);
     }
-
-    // === LOGIKA BLACKJACKA ===
+    
     let dealerHand = [], playerHand = [], bjBet = 0, bjGameOn = false;
     const suits = ['♥', '♦', '♣', '♠'];
     const values = ['2','3','4','5','6','7','8','9','10','J','Q','K','A'];
