@@ -13,7 +13,7 @@
             --red: #ef4444;
             --text: #f8fafc;
             
-            /* KOLORY NEONU (INTENSYWNA ZIELEŃ) */
+            /* KOLORY NEONU */
             --neon-color: #00ff00; 
             --neon-shadow: 0 0 5px var(--neon-color), 0 0 10px var(--neon-color), 0 0 20px #fff, 0 0 30px var(--neon-color);
             
@@ -31,12 +31,12 @@
             text-align: center;
         }
         
-        /* --- STICKY HEADER Z BANNEREM I CENTRALNYM LOGO --- */
+        /* --- STICKY HEADER Z BANNEREM I LOGO --- */
         .sticky-header {
             position: sticky;
             top: 0;
             z-index: 100;
-            background-color: #000; /* Tło pod bannerem */
+            background-color: #000; 
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4); 
         }
 
@@ -47,7 +47,7 @@
             background-position: center top;
             background-repeat: no-repeat;
             
-            /* KLUCZOWA ZMIANA: Wysokość i czarne paski */
+            /* KLUCZOWA ZMIANA: Stała wysokość i czarne paski */
             height: 120px; 
             border-top: 5px solid black; 
             border-bottom: 5px solid black; 
@@ -55,39 +55,44 @@
             z-index: 5;
         }
 
-        /* Kontener dla logo, napisu i subtytułu - centralnie */
+        /* Kontener dla logo, napisu i subtytułu - centralnie, ale w stałej pozycji */
         .header-center {
             position: absolute;
-            top: 100%; /* Zaczyna się tuż pod bannerem */
+            top: 100%; /* Lokalizacja PONIŻEJ bannera */
             left: 50%;
-            transform: translate(-50%, -50%); /* Wyrównanie w pionie i poziomie */
+            transform: translateX(-50%); 
             
             display: flex;
             flex-direction: column;
             align-items: center;
-            z-index: 20; /* Najwyższa warstwa */
+            z-index: 20; 
+            
+            /* Dajemy mu tło, aby napis był czytelny na styku */
+            background-color: var(--bg-color);
+            padding-bottom: 5px;
+            border-radius: 0 0 10px 10px;
         }
 
         /* AVATAR */
         .avatar-img {
-            width: 70px; /* Nieco większy niż w poprzedniej próbie */
+            width: 70px; 
             height: 70px; 
             border-radius: 50%; 
             border: 4px solid var(--green-frog); 
             box-shadow: 0 0 15px rgba(34, 197, 94, 0.8); 
             object-fit: cover;
-            /* KLUCZOWA ZMIANA: Przesunięcie w górę, aby był na styku bannera i tła */
-            margin-top: -35px; /* Połowa jego wysokości wychodzi z bannera w górę */
+            /* KLUCZOWA ZMIANA: Wychodzi z bannera w górę (pozycja stała) */
+            margin-top: -35px; 
         }
 
-        /* NEONOWY NAPIS - Mniejszy, mniej miejsca zajmuje */
+        /* NEONOWY NAPIS */
         h1 { 
-            margin: 5px 0 0 0; /* Mniejszy margines góra/dół */
+            margin: 5px 0 0 0; 
             font-family: 'Arial Black', sans-serif;
-            font-size: 1.5rem; /* Zmniejszony rozmiar */
+            font-size: 1.5rem; 
             text-transform: uppercase; 
             letter-spacing: 4px; 
-            text-shadow: 0 0 5px #000, 0 0 10px #000, var(--neon-shadow); /* Mniejszy neon, aby nie zasłaniał */
+            text-shadow: 0 0 5px #000, 0 0 10px #000, var(--neon-shadow); 
             color: var(--neon-color);
             line-height: 1;
         }
@@ -100,16 +105,16 @@
             text-shadow: 0 0 3px #000;
         }
 
-        /* Wymuszenie czarnego paska pod centralnym elementem, tak jak na screenach */
+        /* Dodatkowy obszar pod logo, aby gra zaczynała się niżej */
         .header-spacer {
-            height: 40px; 
+            height: 80px; /* Dodatkowa przestrzeń na logo i napis */
             background-color: var(--bg-color);
             border-bottom: 1px solid #333;
         }
         
         .container { max-width: 1200px; margin: 20px auto; padding: 0 20px; } 
 
-        /* --- WALLET --- */
+        /* --- WALLET (Dostosowanie przycisku) --- */
         .wallet-box {
             background: linear-gradient(180deg, #1e293b, #0f172a); 
             padding: 20px;
@@ -117,12 +122,9 @@
             margin-bottom: 30px; 
             border: 1px solid var(--green-frog); 
             box-shadow: 0 0 20px rgba(34, 197, 94, 0.15); 
-            margin-top: 20px; /* Odstęp od nagłówka */
+            margin-top: 20px; 
         }
         .balance-display { font-size: 2rem; font-weight: bold; color: var(--neon-color); margin: 10px 0; text-shadow: 0 0 10px rgba(0, 255, 0, 0.3); } 
-
-        /* --- PRZYCISKI I AKCENTY --- */
-        h2 { color: var(--green-frog); margin-top: 0; letter-spacing: 1px; border-bottom: 1px solid #333; width: 100%; padding-bottom: 10px; margin-bottom: 15px;}
 
         button {
             background-color: var(--green-frog); 
@@ -131,32 +133,113 @@
             transition: all 0.2s; box-shadow: 0 4px 0 #0f7647; 
         }
         button:active { transform: translateY(4px); box-shadow: none; }
-        .wallet-box button { background:#334155 !important; color:#fff !important; border:1px solid #475569 !important; box-shadow:none !important; }
         
-        /* KLUCZOWA ZMIANA: Przyciski ruletki z poprawnymi kolorami */
+        /* Naprawiony styl przycisku Dobierz Żetony */
+        .wallet-box button { 
+            background:#334155 !important; 
+            color:#fff !important; 
+            border:1px solid #475569 !important; 
+            box-shadow:none !important; 
+            font-size: 0.85rem !important; /* Mniejsza czcionka, jak na screenach */
+            padding: 8px 15px !important;
+        }
+        
+        /* --- IKONA USTAWIEŃ (koło zębate) --- */
+        .settings-control {
+            position: fixed; /* KLUCZOWA ZMIANA: FIX, aby się nie bugowała */
+            bottom: 20px;
+            right: 20px;
+            z-index: 200;
+        }
+        .settings-icon { 
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            border-radius: 50%;
+            background-color: var(--card-bg);
+            color: var(--green-frog); 
+            border: 2px solid var(--green-frog); 
+            box-shadow: 0 0 15px rgba(34, 197, 94, 0.5); 
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+        }
+        .settings-options {
+            position: absolute;
+            bottom: 50px;
+            right: 0;
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            width: 150px;
+            display: none;
+            padding: 10px 0;
+        }
+        .settings-options.active { display: block; }
+        .setting-item {
+            padding: 8px 15px;
+            cursor: pointer;
+            text-align: left;
+            font-size: 0.9rem;
+            transition: background-color 0.2s;
+        }
+        .setting-item:hover { background-color: #334155; }
+        .setting-item span { margin-right: 5px; }
+
+        /* --- STYLY GRY (Pozostałe - OK) --- */
         .roulette-btn-red { background: var(--roulette-red) !important; color: white !important; box-shadow: 0 4px 0 #992d2d !important; }
         .roulette-btn-black { background: #111 !important; color: white !important; border: 1px solid #555 !important; box-shadow: 0 4px 0 #000 !important; }
         .roulette-btn-green { background: var(--roulette-green) !important; color: white !important; box-shadow: 0 4px 0 #0f7647 !important; }
-
-        /* --- STYLY GRY (Ruletka/Blackjack - Bez zmian) --- */
+        /* reszta stylów gry */
         .game-section { display: grid; grid-template-columns: 1fr; gap: 20px; }
         @media(min-width: 768px) { .game-section { grid-template-columns: 1fr 1fr; } }
         @media(min-width: 1000px) { .game-section { grid-template-columns: 1fr 1fr 1fr; } } 
         .game-card { background-color: var(--card-bg); padding: 20px; border-radius: 12px; border: 1px solid #334155; display: flex; flex-direction: column; align-items: center; text-align: center; }
-        .slot-display { color: var(--green-frog); } 
-        .wheel-center { background: var(--green-frog); }
-        .indicator { border-top: 25px solid var(--neon-color); }
-        .roulette-container { border: 8px solid var(--green-frog); }
-        .playing-card.hidden { background: repeating-linear-gradient(45deg, #10b981, #10b981 8px, #34d399 8px, #34d399 16px); color: transparent; border: 2px solid #fff; }
-        .settings-icon { color: var(--green-frog); border: 2px solid var(--green-frog); box-shadow: 0 0 15px rgba(34, 197, 94, 0.5); } 
-        .modal-content { border: 2px solid var(--green-frog); }
+        .slot-machine { display: flex; gap: 5px; margin: 15px 0; background: #000; padding: 10px; border-radius: 8px; border: 2px solid #555; }
+        .reel { width: 70px; height: 70px; overflow: hidden; border-radius: 4px; background: #111; display: flex; align-items: center; justify-content: center; position: relative; }
+        .slot-display { font-size: 4rem; color: #ffeb3b; line-height: 90px; transition: transform 0.5s; }
+        .slot-payouts { font-size: 0.75rem; color: #aaa; text-align: left; width: 100%; margin-top: 10px; padding: 0 10px; }
+        .slot-payouts div { display: flex; justify-content: space-between; margin-bottom: 2px; }
+
+        .roulette-container { width: 200px; height: 200px; position: relative; margin: 20px auto; border-radius: 50%; overflow: hidden; border: 8px solid var(--green-frog); box-shadow: 0 0 20px rgba(34, 197, 94, 0.3); }
+        .wheel-css { width: 100%; height: 100%; position: absolute; top: 0; left: 0; transform-origin: center; transition: transform 4s cubic-bezier(0.1, 0.7, 0.1, 1); }
+        .wheel-css::before { content: ""; position: absolute; top: -5%; left: -5%; width: 110%; height: 110%; border-radius: 50%; background: conic-gradient(
+            var(--roulette-green) 0% 6.66%, var(--roulette-red) 6.66% 13.32%, black 13.32% 20%, var(--roulette-red) 20% 26.66%, black 26.66% 33.32%,
+            var(--roulette-red) 33.32% 40%, black 40% 46.66%, var(--roulette-red) 46.66% 53.32%, black 53.32% 60%, 
+            var(--roulette-red) 60% 66.66%, black 66.66% 73.32%, var(--roulette-red) 73.32% 80%, black 80% 86.66%, 
+            var(--roulette-red) 86.66% 93.32%, black 93.32% 100%
+        ); }
+        .wheel-center { width: 40px; height: 40px; border-radius: 50%; background: var(--green-frog); position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); display: flex; align-items: center; justify-content: center; color: black; font-size: 1.2rem; z-index: 10; }
+        .indicator { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 10px solid transparent; border-right: 10px solid transparent; border-top: 25px solid var(--neon-color); z-index: 11; }
+
         .cards-area { min-height: 100px; display: flex; justify-content: center; align-items: center; gap: 5px; }
         .playing-card { background: white; border-radius: 6px; width: 60px; height: 90px; margin: 0 2px; position: relative; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); display: flex; flex-direction: column; justify-content: space-between; align-items: center; }
         .playing-card.red { color: red; }
         .playing-card.black { color: black; }
         .card-center { font-size: 2.5rem; font-weight: bold; line-height: 1; }
         .card-corner { font-size: 0.8rem; position: absolute; top: 5px; left: 5px; line-height: 1; }
+        .playing-card.hidden { background: repeating-linear-gradient(45deg, #10b981, #10b981 8px, #34d399 8px, #34d399 16px); color: transparent; border: 2px solid #fff; }
+        .bj-label { font-size: 0.8rem; color: #888; margin-bottom: 5px; }
 
+        .status-msg { margin-top: 15px; font-weight: bold; }
+        .status-msg .win { color: var(--neon-color); text-shadow: 0 0 5px rgba(0, 255, 0, 0.5); }
+        .status-msg .lose { color: var(--red); }
+        .input-bet { padding: 8px; border-radius: 4px; border: 1px solid #475569; background-color: #1e293b; color: #fff; text-align: center; width: 80%; margin-bottom: 10px; }
+
+        .win-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 500; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
+        .win-overlay.show { opacity: 1; }
+        .confetti { position: absolute; animation: fall 6s linear infinite; }
+        @keyframes fall { 0% { opacity: 1; transform: translateY(0) rotate(0deg); } 100% { opacity: 0; transform: translateY(100vh) rotate(1080deg); } }
+        
+        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.7); }
+        .modal.active { display: flex; justify-content: center; align-items: center; }
+        .modal-content { background-color: var(--card-bg); margin: auto; padding: 30px; border: 2px solid var(--green-frog); border-radius: 15px; width: 80%; max-width: 400px; text-align: center; box-shadow: 0 0 25px rgba(34, 197, 94, 0.4); }
+        .close-btn { color: #aaa; float: right; font-size: 28px; font-weight: bold; position: absolute; right: 20px; top: 10px; }
+        .token-option { background-color: #334155; padding: 12px; margin: 10px 0; border-radius: 8px; cursor: pointer; transition: background-color 0.2s; border: 1px solid #475569; }
+        .token-option:hover { background-color: #475569; }
+        .token-option span { color: var(--neon-color); font-weight: bold; float: right; }
+
+        footer { margin-top: 30px; padding: 15px 0; font-size: 0.75rem; color: #666; border-top: 1px solid #333; }
     </style>
 </head>
 <body>
@@ -337,7 +420,7 @@
         setTimeout(() => { overlay.classList.remove('show'); }, 3000);
     }
 
-    // LOGIKA GRY (pozostawiona poprawna)
+    // LOGIKA GRY (Bez zmian)
 
     const symbols = ['🍒', '🍋', '7️⃣'];
     let isSlotsSpinning = false;
