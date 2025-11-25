@@ -38,7 +38,7 @@
             z-index: 100;
             background-color: #000; 
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4); 
-            height: 150px; 
+            height: 180px; /* Zwiększona wysokość nagłówka */
             display: flex; 
             align-items: center;
             justify-content: center;
@@ -53,7 +53,7 @@
             
             width: 100%;
             height: 100%; 
-            border-top: 5px solid black; 
+            /* Usunięto górny czarny pasek, pozostawiono tylko dolną granicę */
             border-bottom: 5px solid black; 
             position: relative; 
             z-index: 5;
@@ -80,8 +80,8 @@
 
         /* AVATAR */
         .avatar-img {
-            width: 70px; 
-            height: 70px; 
+            width: 90px; /* Powiększony avatar */
+            height: 90px; /* Powiększony avatar */
             border-radius: 50%; 
             border: 4px solid var(--green-frog); 
             box-shadow: 0 0 15px rgba(34, 197, 94, 0.8); 
@@ -91,11 +91,11 @@
 
         /* NEONOWY NAPIS */
         h1 { 
-            margin: 5px 0 0 0; 
+            margin: 8px 0 0 0; /* Zwiększony margines */
             font-family: 'Arial Black', sans-serif;
-            font-size: 1.5rem; 
+            font-size: 2rem; /* Powiększony napis */
             text-transform: uppercase; 
-            letter-spacing: 4px; 
+            letter-spacing: 5px; /* Zwiększony odstęp między literami */
             text-shadow: 0 0 5px #000, 0 0 10px #000, var(--neon-shadow); 
             color: var(--neon-color);
             line-height: 1;
@@ -103,8 +103,8 @@
         
         .subtitle { 
             color: #ccc; 
-            font-size: 0.7rem; 
-            margin-top: 3px; 
+            font-size: 0.8rem; /* Nieznacznie powiększony subtytuł */
+            margin-top: 5px; 
             letter-spacing: 1px;
             text-shadow: 0 0 3px #000;
         }
@@ -209,10 +209,10 @@
         .indicator { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 10px solid transparent; border-right: 10px solid transparent; border-top: 25px solid var(--neon-color); z-index: 11; }
 
         .cards-area { min-height: 100px; display: flex; justify-content: center; align-items: center; gap: 5px; }
-        .playing-card { background: white; border-radius: 6px; width: 60px; height: 90px; margin: 0 2px; position: relative; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); display: flex; flex-direction: column; justify-content: space-between; align-items: center; padding: 5px; }
+        .playing-card { background: white; border-radius: 6px; width: 60px; height: 90px; margin: 0 2px; position: relative; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); display: flex; flex-direction: column; justify-content: space-between; align-items: center; padding: 5px; box-sizing: border-box;}
         .playing-card.red { color: red; }
         .playing-card.black { color: black; }
-        .card-center { font-size: 2rem; font-weight: bold; line-height: 1; } /* Zmniejszony rozmiar czcionki */
+        .card-center { font-size: 2rem; font-weight: bold; line-height: 1; }
         .card-corner { font-size: 0.8rem; position: absolute; top: 5px; left: 5px; line-height: 1; }
         .playing-card.hidden { background: repeating-linear-gradient(45deg, #10b981, #10b981 8px, #34d399 8px, #34d399 16px); color: transparent; border: 2px solid #fff; }
         .bj-label { font-size: 0.8rem; color: #888; margin-bottom: 5px; }
@@ -327,9 +327,15 @@
             
             <div style="width:100%; text-align:center;">
                 <div class="bj-label">KRUPIER</div>
-                <div id="dealer-area" class="cards-area"></div>
+                <div id="dealer-area" class="cards-area">
+                    <div class="playing-card hidden"></div>
+                    <div class="playing-card hidden"></div>
+                </div>
                 <div class="bj-label" style="margin-top:10px;">TY</div>
-                <div id="player-area" class="cards-area"></div>
+                <div id="player-area" class="cards-area">
+                    <div class="playing-card hidden"></div>
+                    <div class="playing-card hidden"></div>
+                </div>
             </div>
 
             <div id="bj-controls" style="margin-top:20px;">
@@ -362,9 +368,6 @@
             musicStatusIcon.innerText = '🔇';
             musicStatusText.innerText = 'Włącz Muzykę';
         });
-        // Inicjalizacja pustych kart (bez bugujących cyfr)
-        document.getElementById('dealer-area').innerHTML = '<div class="playing-card hidden"></div><div class="playing-card hidden"></div>';
-        document.getElementById('player-area').innerHTML = '<div class="playing-card hidden"></div><div class="playing-card hidden"></div>';
     });
 
     function toggleSettingsMenu() { settingsMenu.classList.toggle('active'); }
@@ -415,7 +418,7 @@
         setTimeout(() => { overlay.classList.remove('show'); }, 3000);
     }
 
-    // LOGIKA SLOTS (Bez zmian)
+    // LOGIKA SLOTS 
     const symbols = ['🍒', '🍋', '7️⃣'];
     let isSlotsSpinning = false;
     function getRandomSymbol() { return symbols[Math.floor(Math.random() * symbols.length)]; }
@@ -466,9 +469,8 @@
         }, 4600); 
     }
 
-    // LOGIKA ROULETTE (POPRAWIONA)
+    // LOGIKA ROULETTE 
     let isRouletteSpinning = false;
-    // Mapowanie kolorów na sektor (0 to Green, reszta: 1-7 Red, 8-14 Black)
     const sectors = [
         { color: 'green', angle: 0 }, 
         { color: 'red', angle: 24 }, { color: 'black', angle: 48 },
@@ -491,12 +493,10 @@
         wheel.style.transition = 'none';
         wheel.style.transform = 'rotate(0deg)';
         
-        // Losujemy index sektora (0 do 14)
         const sectorIndex = Math.floor(Math.random() * sectors.length); 
         const resultColor = sectors[sectorIndex].color;
         
-        // Kąt do obrotu (centerAngle to środek danego sektora)
-        const centerAngle = sectors[sectorIndex].angle + 12; // 12 to połowa sektora (24/2)
+        const centerAngle = sectors[sectorIndex].angle + 12; 
         const fullSpins = 6; 
         const randomOffset = Math.random() * 10 - 5; 
         const finalSpin = fullSpins * 360 - centerAngle + randomOffset;
@@ -520,18 +520,15 @@
         }, 3100);
     }
     
-    // LOGIKA BLACKJACKA (POPRAWIONA FUNKCJA RENDEROWANIA)
+    // LOGIKA BLACKJACKA (KRYTYCZNA POPRAWKA RENDEROWANIA KART)
     let dealerHand = [], playerHand = [], bjBet = 0, bjGameOn = false;
+    // Używamy symboli kolorów, które są standardowo renderowane (Unicode)
     const suits = ['♥', '♦', '♣', '♠'];
     const values = ['2','3','4','5','6','7','8','9','10','J','Q','K','A'];
-    
-    // Konwersja J, Q, K, A na symbole Unicode dla czcionki
+
+    // Mapowanie wartości na wyświetlany symbol (dla J, Q, K, A)
     function getCardSymbol(val) {
-        if (val === 'J') return 'J'; 
-        if (val === 'Q') return 'Q';
-        if (val === 'K') return 'K';
-        if (val === 'A') return 'A';
-        return val;
+        return val; // W Blackjacku wartości te są renderowane jako teksty: 10, J, Q, K, A
     }
 
     function getCard() {
@@ -540,7 +537,7 @@
         return { val, suit };
     }
 
-    // NAPRAWIONA FUNKCJA RENDEROWANIA KARTY
+    // POPRAWIONA FUNKCJA RENDEROWANIA KARTY - używa getCardSymbol
     function renderCard(card, isHidden = false) {
         if(isHidden) return `<div class="playing-card hidden"></div>`; 
         
