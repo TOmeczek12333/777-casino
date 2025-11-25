@@ -5,15 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>777 Casino - Memecoin</title>
     <style>
-        /* --- GŁÓWNE STYLE --- */
+        /* --- GŁÓWNE STYLE I KOLORY --- */
         :root {
             --bg-color: #0f172a;
             --card-bg: #1e293b;
             --gold: #fbbf24;
-            --green: #22c55e;
+            --green-frog: #22c55e; /* Standardowa zieleń */
             --red: #ef4444;
             --text: #f8fafc;
-            --neon-color: #ff0077; /* Różowy/Magenta dla kontrastowego efektu neonu */
+            
+            /* NOWE KOLORY NEONU (ZIELEŃ PEPE) */
+            --neon-color: #00ff00; /* Intensywna, neonowa zieleń */
             --neon-shadow: 0 0 5px var(--neon-color), 0 0 10px var(--neon-color), 0 0 20px #fff, 0 0 30px var(--neon-color);
         }
 
@@ -26,7 +28,7 @@
             text-align: center;
         }
 
-        /* --- NOWY, UPROSZCZONY NAGŁÓWEK Z NEONEM --- */
+        /* --- STICKY HEADER Z NEONEM I AVATAREM --- */
         .sticky-header {
             position: sticky;
             top: 0;
@@ -37,38 +39,47 @@
 
         header {
             background: linear-gradient(90deg, #1a1a1a, #000); 
-            padding: 15px 20px; /* Zmniejszony padding */
-            border-bottom: 4px solid var(--gold); 
+            padding: 15px 20px; 
+            border-bottom: 4px solid var(--green-frog); /* ZŁOTY ZMIENIONY NA ZIELEŃ */
             display: flex; 
-            flex-direction: column; /* Centrowanie elementów */
             align-items: center;
-            justify-content: center; 
-            gap: 5px; 
+            justify-content: center; /* Centruje całą zawartość header */
+            gap: 20px; 
             position: relative; 
             z-index: 5;
+            flex-wrap: wrap; /* Umożliwia łamanie na małych ekranach */
         }
 
-        /* USUNIĘCIE I ZASTĄPIENIE LOGO (ZBYT WIELE OBRAZÓW) */
+        /* AVATAR PRZYWRÓCONY */
         .avatar-img {
-            display: none; 
+            display: block; /* Przywrócenie wyświetlania */
+            width: 70px; 
+            height: 70px; 
+            border-radius: 50%; 
+            border: 3px solid var(--green-frog); /* ZŁOTY ZMIENIONY NA ZIELEŃ */
+            box-shadow: 0 0 15px rgba(34, 197, 94, 0.5); /* ZŁOTY ZMIENIONY NA ZIELEŃ */
+            background-color: #000; 
+            object-fit: cover;
         }
 
         .header-text { 
             text-align: center; 
-            margin-top: 10px;
+            flex-grow: 1; /* Neon zajmuje tyle miejsca ile potrzebuje */
+            min-width: 250px;
         }
 
-        /* NEONOWY NAPIS */
+        /* NEONOWY NAPIS - ZIELONY */
         h1 { 
             margin: 0; 
             color: #fff; 
             font-family: 'Arial Black', sans-serif;
-            font-size: 2.8rem; /* Większy rozmiar */
+            font-size: 2.5rem; 
             text-transform: uppercase; 
             letter-spacing: 5px; 
-            text-shadow: var(--neon-shadow); /* NEON EFFECT */
+            text-shadow: var(--neon-shadow); /* NEON EFFECT ZIELONY */
             color: var(--neon-color);
             transition: all 0.5s ease-in-out;
+            line-height: 1;
         }
         
         .subtitle { 
@@ -81,13 +92,13 @@
 
         .container { max-width: 1200px; margin: 20px auto; padding: 20px; } 
 
-        /* --- WALLET --- */
+        /* --- WALLET (AKCENTY ZIELONE) --- */
         .wallet-box {
             background: linear-gradient(180deg, #1e293b, #0f172a); padding: 20px;
-            border-radius: 15px; margin-bottom: 30px; border: 1px solid var(--gold);
-            box-shadow: 0 0 20px rgba(251, 191, 36, 0.15);
+            border-radius: 15px; margin-bottom: 30px; border: 1px solid var(--green-frog); /* ZMIENIONE */
+            box-shadow: 0 0 20px rgba(34, 197, 94, 0.15); /* ZMIENIONE */
         }
-        .balance-display { font-size: 2rem; font-weight: bold; color: var(--green); margin: 10px 0; text-shadow: 0 0 10px rgba(34, 197, 94, 0.3); }
+        .balance-display { font-size: 2rem; font-weight: bold; color: var(--neon-color); margin: 10px 0; text-shadow: 0 0 10px rgba(0, 255, 0, 0.3); } /* ZMIENIONE */
 
         /* --- GRY LAYOUT --- */
         .game-section { display: grid; grid-template-columns: 1fr; gap: 20px; }
@@ -103,16 +114,26 @@
             text-align: center;
         }
 
-        h2 { color: var(--gold); margin-top: 0; letter-spacing: 1px; border-bottom: 1px solid #333; width: 100%; padding-bottom: 10px; margin-bottom: 15px;}
+        h2 { color: var(--green-frog); margin-top: 0; letter-spacing: 1px; border-bottom: 1px solid #333; width: 100%; padding-bottom: 10px; margin-bottom: 15px;} /* ZMIENIONE */
 
         button {
-            background-color: var(--gold); color: #000; border: none; padding: 10px 20px;
+            background-color: var(--green-frog); /* ZŁOTY ZMIENIONY NA ZIELEŃ */
+            color: #000; border: none; padding: 10px 20px;
             font-size: 1rem; font-weight: bold; cursor: pointer; border-radius: 6px; margin: 5px;
-            transition: all 0.2s; box-shadow: 0 4px 0 #b45309;
+            transition: all 0.2s; box-shadow: 0 4px 0 #0f7647; /* CIEMNIEJSZY ZIELONY CIEŃ */
         }
         button:active { transform: translateY(4px); box-shadow: none; }
-        button:hover:not(:disabled) { background-color: #fbbf24; filter: brightness(1.1); }
+        button:hover:not(:disabled) { background-color: var(--green-frog); filter: brightness(1.1); }
         button:disabled { background-color: #555; color: #888; box-shadow: none; cursor: not-allowed; transform: none; }
+        
+        /* Specjalny przycisk "Dobierz Żetony" */
+        .wallet-box button {
+            background:#334155 !important; 
+            color:#fff !important; 
+            border:1px solid #475569 !important; 
+            box-shadow:none !important;
+        }
+
 
         .input-bet {
             padding: 12px; border-radius: 8px; border: 2px solid #334155;
@@ -121,165 +142,45 @@
         }
 
         .status-msg { margin-top: 15px; font-weight: bold; min-height: 24px; font-size: 1.1rem; color: var(--text); } 
-        .win { color: var(--green); text-shadow: 0 0 10px rgba(34, 197, 94, 0.5); }
+        .win { color: var(--neon-color); text-shadow: 0 0 10px rgba(0, 255, 0, 0.5); } /* ZMIENIONE */
         .lose { color: var(--red); }
 
         /* --- SLOTY CSS --- */
-        .slot-machine {
-            display: flex; justify-content: center; gap: 5px; margin: 20px auto;
-            background: #000; padding: 10px; border-radius: 8px; border: 3px solid #64748b;
-        }
-
-        .reel {
-            width: 60px; height: 90px; overflow: hidden; position: relative;
-            border: 1px solid #333; border-radius: 4px; background: #111;
-        }
-
-        .slot-display {
-            font-size: 48px; position: absolute; top: 0; left: 0; 
-            width: 100%; text-align: center; line-height: 90px;
-            transition: transform 3s cubic-bezier(0.1, 0.7, 0.1, 1);
-            color: var(--gold); 
-            font-family: monospace;
-        }
-
-        .slot-payouts {
-            width: 100%; background: #0f172a; border-radius: 6px; padding: 10px;
-            margin-top: 15px; font-size: 0.85rem; text-align: left; border: 1px solid #334155;
-        }
+        .slot-display { color: var(--green-frog); } 
         .slot-payouts div { margin: 3px 0; }
-        .slot-payouts span { float: right; color: var(--green); font-weight: bold; }
+        .slot-payouts span { float: right; color: var(--green-frog); font-weight: bold; }
 
-
-        /* --- RULETKA CSS (KRYTYCZNE POPRAWKI POZYCJONOWANIA) --- */
-        .roulette-container {
-            position: relative; 
-            width: 200px; 
-            height: 200px; 
-            margin: 20px auto 0 auto; 
-            display: flex; justify-content: center; align-items: center;
-        }
-        .wheel-css {
-            width: 100%; height: 100%; border-radius: 50%; border: 8px solid #d97706;
-            position: absolute; top: 0; left: 0;
-            background: conic-gradient(
-                #ef4444 0deg 24deg, #000 24deg 48deg, 
-                #ef4444 48deg 72deg, #000 72deg 96deg, 
-                #ef4444 96deg 120deg, #000 120deg 144deg, 
-                #ef4444 144deg 168deg, #000 168deg 192deg, 
-                #ef4444 192deg 216deg, #000 216deg 240deg, 
-                #ef4444 240deg 264deg, #000 264deg 288deg, 
-                #ef4444 288deg 312deg, #000 312deg 336deg, 
-                #22c55e 336deg 360deg
-            );
-            box-shadow: 0 0 20px rgba(0,0,0,0.5);
-            transition: transform 3s cubic-bezier(0.1, 0.7, 0.1, 1);
-        }
+        /* --- RULETKA CSS (POPRAWKI) --- */
         .wheel-center {
-            position: absolute; 
-            width: 40px; height: 40px; background: var(--gold);
-            border-radius: 50%; z-index: 2; box-shadow: 0 0 10px rgba(0,0,0,0.5);
-            display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
-            top: 50%; 
-            left: 50%; 
-            transform: translate(-50%, -50%); 
+            background: var(--green-frog); /* ZMIENIONE */
         }
         .indicator {
-            position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
-            width: 0; height: 0; border-left: 15px solid transparent; border-right: 15px solid transparent;
-            border-top: 25px solid white; z-index: 5; filter: drop-shadow(0 2px 2px rgba(0,0,0,0.5));
+            border-top: 25px solid var(--neon-color); /* ZMIENIONE */
         }
 
         /* --- BLACKJACK CSS --- */
-        .cards-area { 
-            display: flex; 
-            justify-content: center; 
-            gap: 5px; 
-            min-height: 100px;
-            margin: 10px 0; 
-            flex-wrap: wrap; 
-        }
-        .playing-card {
-            width: 50px; 
-            height: 75px; 
-            background-color: white; border-radius: 6px; 
-            color: black; font-family: 'Arial', sans-serif;
-            font-weight: bold;
-            display: flex; flex-direction: column; 
-            padding: 3px; 
-            box-shadow: 1px 1px 3px rgba(0,0,0,0.3); position: relative;
-        }
-        .playing-card.red { color: #d00; }
         .playing-card.hidden { 
-            background: repeating-linear-gradient(45deg, #b45309, #b45309 8px, #fbbf24 8px, #fbbf24 16px);
+            /* Złoty zmieniony na zielony akcent w ukrytej karcie */
+            background: repeating-linear-gradient(45deg, #10b981, #10b981 8px, #34d399 8px, #34d399 16px);
             color: transparent; border: 2px solid #fff; 
         }
-        .card-corner { 
-            line-height: 1; 
-            font-size: 0.8rem; 
-            position: absolute; top: 3px; left: 3px; 
-        }
-        .card-center { 
-            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); 
-            font-size: 3rem; 
-            line-height: 1; 
-            font-family: 'Times New Roman', serif; 
-        }
-        .bj-label { color: #aaa; margin-top: 5px; font-size: 0.9rem;}
 
-
-        /* --- MODAL i USTAWIENIA (Pozostały CSS) --- */
-        .win-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 500; opacity: 0; transition: opacity 0.5s ease;
-        }
-        .win-overlay.show { opacity: 1; }
-        .confetti { position: fixed; border-radius: 50%; } 
-        
-        .modal {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.7);
-            display: none; align-items: center; justify-content: center; z-index: 1000;
-        }
-        .modal.active { display: flex; }
-
+        /* --- MODAL i USTAWIENIA (AKCENTY ZIELONE) --- */
         .modal-content {
-            background-color: var(--card-bg); padding: 30px; border-radius: 15px; border: 2px solid var(--gold);
-            width: 90%; max-width: 400px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); animation: fadeIn 0.3s ease-out;
+            border: 2px solid var(--green-frog); /* ZMIENIONE */
         }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        .modal-content h3 { color: var(--green-frog); } /* ZMIENIONE */
+        .token-option span { float: right; color: var(--green-frog); } /* ZMIENIONE */
 
-        .modal-content h3 { color: var(--gold); margin-top: 0; border-bottom: 1px solid #333; padding-bottom: 10px; }
-
-        .token-option {
-            background-color: #334155; color: white; padding: 15px; margin: 10px 0; border-radius: 8px;
-            cursor: pointer; transition: background-color 0.2s, transform 0.1s; text-align: left; font-weight: bold;
-        }
-        .token-option:hover { background-color: #475569; transform: scale(1.02); }
-        .token-option span { float: right; color: var(--green); }
-
-        .close-btn { float: right; font-size: 1.5rem; color: #aaa; cursor: pointer; }
-        .close-btn:hover { color: var(--red); }
-        .settings-control {
-            position: fixed; bottom: 20px; right: 20px; z-index: 1000;
-        }
         .settings-icon {
-            background: rgba(30, 41, 59, 0.95); color: var(--gold); border: 2px solid var(--gold);
-            border-radius: 50%; width: 50px; height: 50px; font-size: 24px; cursor: pointer;
-            display: flex; align-items: center; justify-content: center; transition: transform 0.3s;
-            box-shadow: 0 0 15px rgba(251, 191, 36, 0.5); margin-left: auto;
+            color: var(--green-frog); border: 2px solid var(--green-frog); /* ZMIENIONE */
+            box-shadow: 0 0 15px rgba(34, 197, 94, 0.5); /* ZMIENIONE */
         }
-        .settings-icon:hover { transform: rotate(90deg); }
         .settings-options {
-            position: absolute; bottom: 60px; right: 0; background-color: var(--card-bg);
-            border: 1px solid var(--gold); border-radius: 8px; padding: 10px; width: 150px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.5); opacity: 0; visibility: hidden;
-            transform: translateY(10px); transition: opacity 0.3s, transform 0.3s, visibility 0.3s;
+            border: 1px solid var(--green-frog); /* ZMIENIONE */
         }
-        .settings-options.active { opacity: 1; visibility: visible; transform: translateY(0); }
-        .setting-item { padding: 8px 0; display: flex; justify-content: space-between; align-items: center; cursor: pointer; color: var(--text); font-size: 0.9rem; transition: color 0.2s; }
-        .setting-item:hover { color: var(--gold); }
+        .setting-item:hover { color: var(--green-frog); } /* ZMIENIONE */
+
     </style>
 </head>
 <body>
@@ -325,17 +226,21 @@
 
 <div class="sticky-header" id="sticky-header">
     <header>
+        <img src="unnamed.jpg" alt="Pepe Casino" class="avatar-img" onerror="this.src='avatar.jpg'">
+        
         <div class="header-text">
             <h1>777 CASINO</h1>
             <div class="subtitle">Official $777 Memecoin Playground</div>
         </div>
+        
+        <div style="width: 70px;"></div> 
     </header>
 </div>
 <div class="container">
     <div class="wallet-box">
         <div>TWOJE SALDO</div>
         <div class="balance-display"><span id="balance">1000</span> $777</div>
-        <button onclick="openTokenModal()" style="background:#334155; color:#fff; border:1px solid #475569; font-size:0.8rem; box-shadow:none;">+ Dobierz Żetony</button>
+        <button onclick="openTokenModal()">+ Dobierz Żetony</button>
     </div>
 
     <div class="game-section">
@@ -357,7 +262,7 @@
             <div id="slots-result" class="status-msg"></div>
 
             <div class="slot-payouts">
-                <div style="color:var(--gold);">Jackpot (7️⃣ 7️⃣ 7️⃣) <span>x10</span></div>
+                <div style="color:var(--green-frog);">Jackpot (7️⃣ 7️⃣ 7️⃣) <span>x10</span></div>
                 <div style="color:var(--text);">Trzy takie same <span>x3</span></div>
                 <div style="color:#666;">Dwie 7️⃣ <span>x2</span></div>
             </div>
@@ -369,9 +274,9 @@
             <input type="number" id="roulette-bet" class="input-bet" placeholder="Kwota" value="100">
             
             <div style="display:flex; gap:5px; justify-content:center; width:100%;">
-                <button onclick="spinRoulette('red')" style="background:var(--red); color:white; flex:1;">RED (x2)</button>
-                <button onclick="spinRoulette('black')" style="background:#111; color:white; border:1px solid #555; flex:1;">BLACK (x2)</button>
-                <button onclick="spinRoulette('green')" style="background:var(--green); color:white; flex:1;">GREEN (x14)</button>
+                <button onclick="spinRoulette('red')" style="background:var(--red); color:white; flex:1; box-shadow: 0 4px 0 #992d2d;">RED (x2)</button>
+                <button onclick="spinRoulette('black')" style="background:#111; color:white; border:1px solid #555; flex:1; box-shadow: 0 4px 0 #000;">BLACK (x2)</button>
+                <button onclick="spinRoulette('green')" style="background:var(--green-frog); color:white; flex:1; box-shadow: 0 4px 0 #0f7647;">GREEN (x14)</button>
             </div>
 
             <div class="roulette-container">
@@ -404,7 +309,7 @@
             </div>
             <div id="bj-actions" style="display:none; margin-top:20px;">
                 <button onclick="hit()">DOBIERZ</button>
-                <button onclick="stand()" style="background:var(--red); color:white;">STOP</button>
+                <button onclick="stand()" style="background:var(--red); color:white; box-shadow: 0 4px 0 #992d2d;">STOP</button>
             </div>
             <div id="bj-result" class="status-msg"></div>
         </div>
@@ -430,7 +335,6 @@
             musicStatusIcon.innerText = '🔇';
             musicStatusText.innerText = 'Włącz Muzykę';
         });
-        // Ręczne wstawienie startowych kart dla wizualnego efektu
         document.getElementById('dealer-area').innerHTML = '<div class="playing-card hidden"><div class="card-center">?</div></div><div class="playing-card hidden"><div class="card-center">?</div></div>';
         document.getElementById('player-area').innerHTML = '<div class="playing-card hidden"><div class="card-center">?</div></div><div class="playing-card hidden"><div class="card-center">?</div></div>';
     });
@@ -600,7 +504,7 @@
 
 
     // =======================================================
-    // === LOGIKA RULETKI (JUŻ NAPRAWIONA Z LOGIKĄ KĄTÓW) ===
+    // === LOGIKA RULETKI (W pełni naprawiona) ===
     // =======================================================
     let isRouletteSpinning = false;
     function spinRoulette(choice) {
@@ -622,27 +526,24 @@
         if(result >= 1 && result <= 7) color = 'red'; 
         else if(result >= 8) color = 'black'; 
         
-        // Obliczenie docelowego kąta na podstawie indeksu
-        // Każdy sektor ma 24 stopnie. 
-        // 0 (zielony) jest od 336 do 360 (środek 348)
-        // Czerwone 1-7 są od 0 do 24, 48 do 72, itd.
-        
         let centerAngle = 0;
+        
+        // Obliczenia kątów (każdy sektor ma 24 stopnie)
         if (result === 0) {
-            centerAngle = 348; 
+            centerAngle = 348; // Środek zielonego sektora
         } else if (result >= 1 && result <= 7) {
-            // Czerwone pola (1, 3, 5, 7, 9, 11, 13) mają indeksy parzyste w sekwencji sektorów: 0, 2, 4, 6, 8, 10, 12
+            // Czerwone pola (sektory parzyste: 0, 2, 4, 6, 8, 10, 12)
             let sectorIndex = (result - 1) * 2;
-            centerAngle = sectorIndex * 24 + 12; // 12, 60, 108, 156, 204, 252, 300
+            centerAngle = sectorIndex * 24 + 12; 
         } else if (result >= 8) {
-            // Czarne pola (2, 4, 6, 8, 10, 12, 14) mają indeksy nieparzyste: 1, 3, 5, 7, 9, 11, 13
+            // Czarne pola (sektory nieparzyste: 1, 3, 5, 7, 9, 11, 13)
             let sectorIndex = (result - 8) * 2 + 1;
-            centerAngle = sectorIndex * 24 + 12; // 36, 84, 132, 180, 228, 276, 324
+            centerAngle = sectorIndex * 24 + 12; 
         }
         
         // Dodatkowe obroty i odjęcie kąta celu, aby wskaźnik trafił w środek
         const fullSpins = 6; 
-        const randomOffset = Math.random() * 10 - 5; // Małe losowe przesunięcie
+        const randomOffset = Math.random() * 10 - 5; 
         const finalSpin = fullSpins * 360 - centerAngle + randomOffset;
 
         setTimeout(() => {
@@ -682,10 +583,7 @@
         
         let colorClass = (card.suit === '♥' || card.suit === '♦') ? 'red' : 'black';
         
-        // Duża wartość na środku
         const centerContent = card.val;
-        
-        // Mała wartość i symbol w rogu
         const cornerContent = `${card.val}<br>${card.suit}`;
 
         return `
